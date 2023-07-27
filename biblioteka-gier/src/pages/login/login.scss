@@ -1,0 +1,96 @@
+body {
+	// width: 100%;
+	// background: rgba(0, 0, 0, 0.5) url("../../images/prey.jpg");
+	// background-blend-mode: darken;
+	// -webkit-background-size: cover;
+	// -moz-background-size: cover;
+	// -o-background-size: cover;
+	// background-size: cover;
+}
+.login {
+	color: white;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	// background: rgba(0, 0, 0, 0.5) url("../../images/prey.jpg");
+	background-blend-mode: darken;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-position: center;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&--container {
+		width: 40%;
+	}
+	&--title {
+		font-size: 34px;
+	}
+
+	.inputRegister {
+		transition: ease 0.1s;
+		padding: 5px 15px;
+		font-size: 22px;
+		background: none;
+		border: 0;
+		border-bottom: 2px rgba(255, 255, 255, 0.753) solid;
+		width: 100%;
+		color: white;
+		font-weight: 500;
+		box-sizing: border-box;
+	}
+}
+@media (max-width: 1000px) {
+	.login {
+		&--container {
+			width: 70%;
+		}
+	}
+	.buttonGoLogin {
+		width: 90%;
+		background: pink;
+	}
+}
+::placeholder {
+	font-size: 22px;
+	font-weight: 100;
+	color: white;
+	opacity: 0.8;
+}
+.buttonRegister {
+	font-size: 24px;
+	padding: 12px;
+	background: white;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.buttonGoLogin,
+.buttonForgott {
+	background: none;
+	color: white;
+	width: 50%;
+	&--link {
+		text-decoration: underline;
+	}
+}
+.buttonRegister,
+.buttonGoLogin,
+.buttonForgott {
+	text-align: center;
+	font-family: "Montserrat", sans-serif;
+	cursor: pointer;
+	border: 0;
+}
+.inputRegister:focus {
+	outline: none;
+	border-bottom: 2px white solid;
+}
+.buttonForgott {
+	text-decoration: underline;
+}
