@@ -1,0 +1,118 @@
+.sidebar {
+  color: #ffffff;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+
+  .sidebar__titles {
+    text-align: center;
+    font-weight: 700;
+    font-size: 21px;
+    text-align:center;
+    margin:15% auto;
+  }
+  .sidebar__allGames {
+    cursor:pointer;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 22px;
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 140px;
+    margin:0 auto;
+    background-color: #1f1e1e;
+    border-radius: 25px;
+    transition:0.6s;
+    &:hover {
+      transition:0.6s;
+      background-color: #080808;
+    }
+  }
+  @mixin sidebar__buttons {
+    transition:0.6s;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 13px;
+    outline: none;
+    border: none;
+    height: 75px;
+    width: 140px;
+    background-color: #1f1e1e;
+    border-radius: 25px;
+    margin:0 auto 20% auto;
+    padding-top: 40px;
+    background-size: 36px 36px;
+    font-family: "Montserrat", sans-serif;
+    background-repeat: no-repeat;
+    background-position: center bottom 35px;
+    cursor: pointer;
+    &:hover {
+      transition:0.6s;
+      background-color: #080808;
+    }
+  }
+  @mixin sidebar_showAll {
+    cursor: pointer;
+    background-color: #000000;
+    color: #8f8d8d;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    outline: none;
+    height: 60px;
+    padding-bottom: 30px;
+    border: none;
+    background-image: url("../images/arrow-icon.png");
+    background-size: 36px 36px;
+    background-repeat: no-repeat;
+    background-position: center top 30px;
+  }
+  .sidebar__bestOfAllTime {
+    @include sidebar__buttons;
+    background-image: url("../images/bestOf-icon.png");
+  }
+  .sidebar__popular2023 {
+    @include sidebar__buttons;
+    background-image: url("../images/popular-icon.png");
+  }
+  .sidebar__last30Days {
+    @include sidebar__buttons;
+    background-image: url("../images/last30days-icon.png");
+  }
+  .sidebar__comingSoon {
+    @include sidebar__buttons;
+    background-image: url("../images/comingSoon-icon.png");
+  }
+  .sidebar__windows {
+    @include sidebar__buttons;
+    background-image: url("../images/windows-icon.png");
+  }
+  .sidebar__playstation {
+    @include sidebar__buttons;
+    background-image: url("../images/playstation-icon.png");
+  }
+  .sidebar__xbox {
+    @include sidebar__buttons;
+    background-image: url("../images/xbox-icon.png");
+  }
+  .sidebar__showAllPlatforms {
+  @include sidebar_showAll;  
+  }
+  .sidebar__rpg {
+    @include sidebar__buttons;
+    background-image: url("../images/rpg-icon.png");
+  }
+  .sidebar__fps {
+    @include sidebar__buttons;
+    background-image: url("../images/fps-icon.png");
+  }
+  .sidebar__adventure {
+    @include sidebar__buttons;
+    background-image: url("../images/adventure-icon.png");
+  }
+  .sidebar__showAllGenres {
+    @include sidebar_showAll;  
+  }
+}

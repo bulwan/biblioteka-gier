@@ -1,0 +1,94 @@
+.navbar {
+  width: 60%;
+  height: 67px;
+  display: flex;
+  flex-direction:row;
+  background-color: #181818;
+  border-radius: 0 0 15px 15px;
+  margin: 0 auto;
+  .navbar__title {
+    font-size: 20px;
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.616);
+    margin: auto;
+    transition:0.6s;
+    cursor:pointer;
+    .title__navlink {
+      text-decoration:none;
+      color: rgba(255, 255, 255, 0.616);
+      transition:0.6s;
+      &:hover {
+        transition:0.6s;
+        color:rgb(255, 255, 255);
+      }
+    }
+  }
+  .navbar__searchBar {
+    display:flex;
+    margin: auto;
+    width: 70%;
+    img {
+      margin:0 auto;
+      width:18px;
+      height:18px;
+    }
+    input {
+      border-radius: 15px;
+      background-color: #a4a4a4;
+      border:none;
+      width: 100%;
+      height: 30px;
+      cursor:pointer;
+      font-family:'Montserrat', sans-serif;
+      transition:0.6s;
+      &:focus {
+        transition:0.6s;
+        text-align:center;
+        background-color: #c4c4c4;
+        outline:none;
+      }
+      &:hover {
+        transition:0.6s;
+        background-color: #c4c4c4;
+      }
+      &::placeholder {
+        text-align: center;
+        font-weight: bold;
+        color: #363636;
+        opacity: 70%;
+        font-size:16px;
+      }
+    }
+    img {
+      width: 24px;
+      height: 24px;
+      top: 25px;
+    }
+  }
+  @mixin navbar__buttons {
+    display:flex;
+    width:75%;
+    height:27px;
+    background:none;
+    border:none;
+    margin: auto;
+    color:white;
+    font-family:'Montserrat', sans-serif;
+    font-size:18px;
+    font-weight:500;
+    cursor:pointer;
+  }
+  .navbar__login {
+    @include navbar__buttons;
+  }
+  .navbar__register {
+    @include navbar__buttons;
+  }
+  .navbar__buttons {
+    display:flex;
+    justify-content: space-evenly;
+    width:20%;
+    flex-basis: 200px;
+  }
+}
