@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "games",
+  "info": {
+    "singularName": "game",
+    "pluralName": "games",
+    "displayName": "game",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "developers": {
+      "type": "string"
+    },
+    "genres": {
+      "type": "customField",
+      "options": [
+        "Action",
+        "Indie",
+        "Adventure",
+        "RPG",
+        "Strategy",
+        "Shooter",
+        "Casual",
+        "Simulation",
+        "Puzzle",
+        "Arcade",
+        "Platformer",
+        "Massively Multiplayer",
+        "Racing",
+        "Sports",
+        "Fighting",
+        "Family",
+        "Board Games",
+        "Educational",
+        "Card"
+      ],
+      "customField": "plugin::multi-select.multi-select"
+    },
+    "score": {
+      "type": "integer",
+      "max": 100,
+      "min": 0
+    },
+    "platforms": {
+      "type": "string"
+    },
+    "screenshots": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "genres_2s": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::genre.genre",
+      "inversedBy": "games"
+    }
+  }
+}
