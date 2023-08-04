@@ -21,7 +21,6 @@
 }
 .home__content {
   background: #222;
-  width: 90%;
   border-radius: 15px;
   margin: auto;
 }
@@ -150,4 +149,4 @@
 }
 .gameCard .gameCard__addToLibrary p {
   text-align: left;
-}/*# sourceMappingURL=home.css.map */
+}/*# sourceMappingURL=Home.css.map */

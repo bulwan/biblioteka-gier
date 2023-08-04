@@ -1,5 +1,5 @@
 .navbar {
-  width: 1280px;
+  width: 100%;
   height: 67px;
   display: flex;
   flex-direction: row;
@@ -14,9 +14,9 @@
   color: rgba(255, 255, 255, 0.616);
   transition: 0.6s;
   margin: auto 2%;
-  cursor: pointer;
 }
 .navbar .navbar__title .title__navlink {
+  cursor: pointer;
   text-decoration: none;
   color: rgb(233, 233, 233);
   transition: 0.2s;

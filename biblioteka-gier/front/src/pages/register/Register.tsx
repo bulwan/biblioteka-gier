@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../login/login.css";
 import { useState } from "react";
 import { setAuthToken } from "../../components/setAuthToken";
 function Register(props) {
 	const navigate = useNavigate();
 	const [userID, setUserID] = useState();
+	const [message, setMessage] = useState([]);
 	const imagePath = `./src/images/${props.src}`;
 	const divStyle = {
 		background: `rgba(0, 0, 0, 0.5) url(${imagePath})`,
@@ -94,9 +95,23 @@ function Register(props) {
 				})
 				.catch(error => {
 					console.log("An error occurred:", error.response);
+					if (
+						error.response.data.error.details.errors === undefined
+					) {
+						const messages = [];
+						messages.push(error.response.data.error.message);
+						setMessage(messages);
+					} else {
+						const messages = [];
+						for (const err of error.response.data.error.details
+							.errors) {
+							messages.push(err.message);
+						}
+						setMessage(messages);
+					}
 				});
 		} else {
-			console.log("Password doesn't match.");
+			setMessage(["Password doesn't match."]);
 		}
 	};
 	return (
@@ -104,7 +119,11 @@ function Register(props) {
 			<div className="login--container">
 				<form onSubmit={register}>
 					<p className="login--title">Register</p>
-
+					{message?.map(item => (
+						<div className="login--errors" key={item}>
+							{item}
+						</div>
+					))}
 					<label>
 						<br />
 						<input
@@ -161,11 +180,12 @@ function Register(props) {
 					<br />
 					<button className="buttonRegister">Register</button>
 					<br />
-					<button className="buttonGoLogin">
-						Already registered?{" "}
-						<span className="buttonGoLogin--link">Sign in.</span>
-					</button>
 				</form>
+
+				<NavLink className="buttonGoLogin" to="/login">
+					Already registered?{" "}
+					<span className="buttonGoLogin--link">Sign in.</span>
+				</NavLink>
 			</div>
 		</div>
 	);

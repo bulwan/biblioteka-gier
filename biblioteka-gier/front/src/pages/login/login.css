@@ -40,6 +40,10 @@ body {
   box-sizing: border-box;
 }
 
+.login--errors {
+  background: red;
+}
+
 @media (max-width: 1000px) {
   .login--container {
     width: 70%;
@@ -86,6 +90,7 @@ body {
 .buttonGoLogin,
 .buttonForgott {
   text-align: center;
+  text-decoration: none;
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
   border: 0;

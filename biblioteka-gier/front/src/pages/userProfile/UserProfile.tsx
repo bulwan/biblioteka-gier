@@ -3,6 +3,7 @@ import CollectionCard from "../../components/CollectionCard";
 import ProfileHeader from "../../components/ProfileHeader";
 import profileButtons from "../../components/profilesButton";
 import { useState, useEffect } from "react";
+import "./userProfile.css";
 import axios from "axios";
 
 function UserProfile() {

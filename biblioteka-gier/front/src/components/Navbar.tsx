@@ -31,7 +31,16 @@ function Navbar() {
 					></input>
 				</div>
 				<div className="navbar__buttons">
-					{localStorage.getItem("token") ? (
+					{!localStorage.getItem("token") ? (
+						<>
+							<NavLink to="login" className="navbar__login">
+								Login{" "}
+							</NavLink>
+							<NavLink to="register" className="navbar__login">
+								Register{" "}
+							</NavLink>
+						</>
+					) : (
 						<>
 							<NavLink to="me" className="navbar__login">
 								My profile{" "}
@@ -42,15 +51,6 @@ function Navbar() {
 								className="navbar__login"
 							>
 								Logout{" "}
-							</NavLink>
-						</>
-					) : (
-						<>
-							<NavLink to="login" className="navbar__login">
-								Login{" "}
-							</NavLink>
-							<NavLink to="register" className="navbar__login">
-								Register{" "}
 							</NavLink>
 						</>
 					)}

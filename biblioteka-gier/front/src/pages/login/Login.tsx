@@ -1,5 +1,5 @@
 import "./login.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { setAuthToken } from "../../components/setAuthToken";
@@ -17,6 +17,7 @@ function Login(props) {
 	};
 
 	const [data, setData] = useState(initialValue);
+	const [message, setMessage] = useState([]);
 
 	const handleChange = event => {
 		const { name, value } = event.target;
@@ -25,6 +26,7 @@ function Login(props) {
 			[name]: value,
 		}));
 	};
+
 	const login = async e => {
 		e.preventDefault();
 		const user = {
@@ -40,20 +42,48 @@ function Login(props) {
 				navigate("/me");
 			})
 			.catch(error => {
-				console.log("An error occurred:", error.response);
+				if (error.response.data.error.details.errors === undefined) {
+					const messages = [];
+					messages.push(error.response.data.error.message);
+					setMessage(messages);
+				} else {
+					const messages = [];
+					for (const err of error.response.data.error.details
+						.errors) {
+						messages.push(err.message);
+					}
+					setMessage(messages);
+				}
 			});
 	};
-
 	return (
 		<div className="login" style={divStyle}>
 			<div className="login--container">
 				<form onSubmit={login}>
 					<p className="login--title">Login</p>
+					{/* <div className="login--errors">{message}</div> */}
+					{message?.map(item => (
+						<div className="login--errors" key={item}>
+							{item}
+						</div>
+					))}
+					{/* {message.length !== 1 ? (
+						<>
+							{message?.map(item => (
+								<div className="login--errors" key={item}>
+									{item}
+								</div>
+							))}
+						</>
+					) : (
+						<div className="login--errors">{message}</div>
+					)} */}
+
 					<label>
 						<br />
 						<input
 							type="text"
-							placeholder="Email"
+							placeholder="Email or Username"
 							name="identifier"
 							className="inputRegister"
 							value={data.identifier}
@@ -78,16 +108,14 @@ function Login(props) {
 					<button className="buttonRegister">Login</button>
 					<br />
 					<br />
-					<button className="buttonGoLogin">
-						Don't have an account?{" "}
-						<span className="buttonGoLogin--link">Sign up.</span>
-					</button>
-					<br />
-					<br />
-					<button className="buttonForgott">
-						Forgot your password?
-					</button>
 				</form>
+				<NavLink className="buttonGoLogin" to="/register">
+					Don't have an account?{" "}
+					<span className="buttonGoLogin--link">Sign up.</span>
+				</NavLink>
+				<br />
+				<br />
+				<button className="buttonForgott">Forgot your password?</button>
 			</div>
 		</div>
 	);
