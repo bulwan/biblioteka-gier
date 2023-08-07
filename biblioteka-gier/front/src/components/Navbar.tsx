@@ -10,7 +10,6 @@ import GameInformation from "./GameInformation";
 import Examples from "../pages/home/examples";
 import NavbarGames from "./NavbarGames";
 import { useEffect, useState } from "react";
-
 function Navbar() {
   const navigate = useNavigate();
   const logout = () => {

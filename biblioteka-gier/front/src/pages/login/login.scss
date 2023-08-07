@@ -1,7 +1,6 @@
 body {
 	width: 100%;
 }
-
 .login {
 	color: white;
 	position: absolute;
@@ -26,22 +25,36 @@ body {
 	&--title {
 		font-size: 34px;
 	}
+	&--title-container {
+		height: 120px;
+	}
 
 	.inputRegister {
+		width: 100%;
+		color: white;
 		transition: ease 0.1s;
-		padding: 5px 15px;
+		padding: 5px 10px;
 		font-size: 22px;
 		background: none;
 		border: 0;
 		border-bottom: 2px rgba(255, 255, 255, 0.753) solid;
-		width: 100%;
-		color: white;
 		font-weight: 500;
 		box-sizing: border-box;
 	}
 }
-.login--errors {
-	background: red;
+.login .input-div {
+	height: 80px;
+}
+.login--containter-errors {
+	//position: absolute;
+	height: 20px;
+	text-align: left;
+	font-style: italic;
+	&-center {
+		text-align: center;
+		font-weight: 900;
+		margin-top: 10px;
+	}
 }
 
 @media (max-width: 1000px) {
