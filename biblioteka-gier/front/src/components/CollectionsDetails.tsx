@@ -25,7 +25,8 @@ function CollectionDetail(props) {
 						developers: game.attributes.developers,
 						backgroundPicture:
 							url +
-							game.attributes.screenshots.data[0].attributes.url,
+							game.attributes.screenshots.data[0].attributes
+								.formats.small.url,
 					});
 				}
 				setGameList(newCollections);

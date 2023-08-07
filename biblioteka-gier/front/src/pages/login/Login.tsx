@@ -1,39 +1,29 @@
-import "./login.css";
+import { useForm } from "react-hook-form";
+import { setAuthToken } from "../../components/setAuthToken";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./login.css";
 import { useState } from "react";
-import { setAuthToken } from "../../components/setAuthToken";
-function Login(props) {
-	const navigate = useNavigate();
-	const imagePath = `./src/images/${props.src}`;
+
+function Login2(props) {
 	const divStyle = {
-		background: `rgba(0, 0, 0, 0.5) url(${imagePath})`,
+		background: `rgba(0, 0, 0, 0.5) url("./src/images/${props.src}")`,
 		backgroundSize: "cover",
 		backgroundPosition: "center",
 	};
-	const initialValue = {
-		identifier: "",
-		password: "",
+	type Inputs = {
+		identifier: string;
+		password: string;
 	};
-
-	const [data, setData] = useState(initialValue);
-	const [message, setMessage] = useState([]);
-
-	const handleChange = event => {
-		const { name, value } = event.target;
-		setData(prevData => ({
-			...prevData,
-			[name]: value,
-		}));
-	};
-
-	const login = async e => {
-		e.preventDefault();
-		const user = {
-			identifier: data.identifier,
-			password: data.password,
-		};
-		await axios
+	const [message, setMessage] = useState("");
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<Inputs>();
+	const navigate = useNavigate();
+	const onSubmit: SubmitHandler<Inputs> = user => {
+		axios
 			.post("http://localhost:1337/api/auth/local", user)
 			.then(response => {
 				const token = response.data.jwt;
@@ -42,82 +32,69 @@ function Login(props) {
 				navigate("/me");
 			})
 			.catch(error => {
-				if (error.response.data.error.details.errors === undefined) {
-					const messages = [];
-					messages.push(error.response.data.error.message);
-					setMessage(messages);
-				} else {
-					const messages = [];
-					for (const err of error.response.data.error.details
-						.errors) {
-						messages.push(err.message);
-					}
-					setMessage(messages);
-				}
+				console.log(error.response);
+				setMessage(error.response.data.error.message);
 			});
 	};
 	return (
-		<div className="login" style={divStyle}>
-			<div className="login--container">
-				<form onSubmit={login}>
-					<p className="login--title">Login</p>
-					{/* <div className="login--errors">{message}</div> */}
-					{message?.map(item => (
-						<div className="login--errors" key={item}>
-							{item}
+		<>
+			<div className="login" style={divStyle}>
+				<div className="login--container">
+					<form onSubmit={handleSubmit(onSubmit)}>
+						<div className="login--title-container">
+							<p className="login--title">Login</p>
+							<div className="login--containter-errors-center">
+								{message}
+							</div>
 						</div>
-					))}
-					{/* {message.length !== 1 ? (
-						<>
-							{message?.map(item => (
-								<div className="login--errors" key={item}>
-									{item}
-								</div>
-							))}
-						</>
-					) : (
-						<div className="login--errors">{message}</div>
-					)} */}
 
-					<label>
+						<div className="input-div">
+							<input
+								className="inputRegister"
+								placeholder="Email or username"
+								{...register("identifier", { required: true })}
+							/>
+							<br />{" "}
+							{errors.identifier && (
+								<div className="login--containter-errors">
+									identifier field is required
+								</div>
+							)}
+						</div>
+						<div className="input-div">
+							<input
+								className="inputRegister"
+								type="password"
+								placeholder="Password"
+								{...register("password", { required: true })}
+							/>
+							<br />
+							{errors.password && (
+								<div className="login--containter-errors">
+									password field is required
+								</div>
+							)}
+						</div>
+						<br />
 						<br />
 						<input
-							type="text"
-							placeholder="Email or Username"
-							name="identifier"
-							className="inputRegister"
-							value={data.identifier}
-							onChange={handleChange}
+							className="buttonRegister"
+							type="submit"
+							value="Sign in."
 						/>
-					</label>
+					</form>
+					<NavLink className="buttonGoLogin" to="/register">
+						Don't have an account?{" "}
+						<span className="buttonGoLogin--link">Sign up.</span>
+					</NavLink>
 					<br />
 					<br />
-					<label>
-						<br />
-						<input
-							type="password"
-							placeholder="Password"
-							name="password"
-							className="inputRegister"
-							value={data.password}
-							onChange={handleChange}
-						/>
-					</label>
-					<br />
-					<br />
-					<button className="buttonRegister">Login</button>
-					<br />
-					<br />
-				</form>
-				<NavLink className="buttonGoLogin" to="/register">
-					Don't have an account?{" "}
-					<span className="buttonGoLogin--link">Sign up.</span>
-				</NavLink>
-				<br />
-				<br />
-				<button className="buttonForgott">Forgot your password?</button>
+					<button className="buttonForgott">
+						Forgot your password?
+					</button>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
-export default Login;
+export default Login2;

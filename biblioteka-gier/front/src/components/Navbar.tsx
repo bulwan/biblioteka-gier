@@ -7,6 +7,8 @@ import "./Navbar.css";
 import "../index.css";
 import CollectionDetail from "./CollectionsDetails";
 import GameInformation from "./GameInformation";
+import Login2 from "../pages/login/Login";
+import Register2 from "../pages/register/Register";
 
 function Navbar() {
 	const navigate = useNavigate();
