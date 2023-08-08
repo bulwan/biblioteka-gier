@@ -1,13 +1,8 @@
 .navbar {
   width: 100%;
   height: 67px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   background-color: #262626;
   border-radius: 0 0 15px 15px;
   margin: 0 auto;
@@ -17,7 +12,6 @@
   font-weight: 800;
   font-style: italic;
   color: rgba(255, 255, 255, 0.616);
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   margin: auto 2%;
 }
@@ -25,21 +19,19 @@
   cursor: pointer;
   text-decoration: none;
   color: rgb(233, 233, 233);
-  -webkit-transition: 0.2s;
   transition: 0.2s;
   font-weight: 700;
 }
 .navbar .navbar__title .title__navlink:hover {
-  -webkit-transition: 0.2s;
   transition: 0.2s;
   color: rgb(255, 255, 255);
 }
 .navbar .navbar__searchBar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin: auto 2%;
   width: 70%;
+  position: relative;
+  z-index: 2;
 }
 .navbar .navbar__searchBar img {
   margin: 0 auto;
@@ -55,43 +47,19 @@
   height: 30px;
   cursor: pointer;
   font-family: "Montserrat", sans-serif;
-  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
 .navbar .navbar__searchBar input:focus {
-  -webkit-transition: 0.2s;
   transition: 0.2s;
   text-align: center;
   background-color: #ddd;
   outline: none;
 }
 .navbar .navbar__searchBar input:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #dddddd;
 }
-.navbar .navbar__searchBar input::-webkit-input-placeholder {
-  text-align: center;
-  font-weight: bold;
-  color: #363636;
-  opacity: 70%;
-  font-size: 16px;
-}
 .navbar .navbar__searchBar input::-moz-placeholder {
-  text-align: center;
-  font-weight: bold;
-  color: #363636;
-  opacity: 70%;
-  font-size: 16px;
-}
-.navbar .navbar__searchBar input:-ms-input-placeholder {
-  text-align: center;
-  font-weight: bold;
-  color: #363636;
-  opacity: 70%;
-  font-size: 16px;
-}
-.navbar .navbar__searchBar input::-ms-input-placeholder {
   text-align: center;
   font-weight: bold;
   color: #363636;
@@ -110,9 +78,44 @@
   height: 24px;
   top: 25px;
 }
+.navbar .navbar_results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.navbar .navbar_results .gameList__gameCard {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: rgb(250, 250, 250);
+  border-bottom: 2px solid #ccc;
+}
+.navbar .navbar_results .gameList__gameCard img {
+  width: 60px;
+  height: 80px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 10px;
+}
+.navbar .navbar_results .gameCard__title {
+  margin: 0;
+  font-size: 20px;
+}
+.navbar .navbar_results .gameCard__platforms {
+  margin: 0 0 0 2%;
+}
+.navbar .navbar_results .gameCard__platforms img {
+  width: auto;
+  height: 25px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .navbar .navbar__login {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 27px;
@@ -125,8 +128,6 @@
   cursor: pointer;
 }
 .navbar .navbar__register {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 27px;
@@ -139,10 +140,7 @@
   cursor: pointer;
 }
 .navbar .navbar__buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 15%;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
+  justify-content: space-around;
+}/*# sourceMappingURL=Navbar.css.map */
