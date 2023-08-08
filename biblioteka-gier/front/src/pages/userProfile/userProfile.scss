@@ -52,32 +52,29 @@
 }
 
 .categoryCard {
-	margin: 10px;
-	width: 20%;
-	transition: ease 0.1s;
-	transform: scale(0.85);
+	width: 18%;
 	.categoryCard--icon {
 		img {
-			padding-bottom: 10px;
-			width: 80px;
-			height: 80px;
+			margin: 10px 0;
+			width: 70px;
+			height: 70px;
 		}
 	}
 
 	&--title {
 		width: 100%;
 		font-weight: 400;
-		font-size: 25px;
+		font-size: 22px;
 	}
 	&--number {
 		width: 100%;
 		font-weight: 700;
-		font-size: 40px;
+		font-size: 34px;
 	}
 	&--content {
 		background: #222222;
 		border-radius: 10px;
-		margin: 0 10px;
+		margin: 0 3px;
 	}
 }
 .categoryCard:hover {
@@ -149,9 +146,7 @@
 }
 @media (max-width: 999px) {
 	.categoryCard {
-		min-width: 230px;
-		margin: 10px;
-		transform: scale(0.8);
+		min-width: 190px;
 	}
 	.profileButtonsBar {
 		display: flex;
@@ -159,9 +154,16 @@
 		flex-wrap: wrap;
 	}
 }
-@media (max-width: 580px) {
+@media (max-width: 760px) {
 	.categoryCard {
-		min-width: 44%;
+		min-width: 34%;
+	}
+}
+@media (max-width: 570px) {
+	.categoryCard {
+		&--content {
+			width: 100%;
+		}
 		&--icon {
 			img {
 				width: 2%;
@@ -181,6 +183,6 @@
 		}
 	}
 	.collectionCard {
-		width: 98%;
+		max-width: 500px;
 	}
 }

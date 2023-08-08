@@ -5,13 +5,17 @@ import profileButtons from "../../components/profilesButton";
 import { useState, useEffect } from "react";
 import "./userProfile.css";
 import axios from "axios";
-
+import GameCard from "../../components/GameCard";
 function UserProfile() {
 	const url = "http://localhost:1337";
 	const [profilePicture, setProfilePicture] = useState("");
 	const [backgroundPicture, setBackgroundPicture] = useState("");
 	const [username, setUsername] = useState("");
 	const [collections, setCollections] = useState(null);
+	const [completed, setCompleted] = useState([]);
+	const [inPlans, setInPlans] = useState([]);
+	const [abandoned, setAbandoned] = useState([]);
+	const [playing, setPlaying] = useState([]);
 
 	useEffect(() => {
 		axios
@@ -29,7 +33,12 @@ function UserProfile() {
 					: setBackgroundPicture(
 							url + response.data.backgroundPicture.url
 					  );
+				console.log(response.data);
 				setUsername(response.data.username);
+				setCompleted(response.data.completed);
+				setInPlans(response.data.inPlans);
+				setAbandoned(response.data.abandoned);
+				setPlaying(response.data.playing);
 			})
 			.catch(error => {
 				console.log("An error occurred:", error.response);
@@ -59,6 +68,7 @@ function UserProfile() {
 				console.log("An error occurred:", error.response);
 			});
 	}, []);
+
 	return (
 		<div className="userProfile">
 			<ProfileHeader
@@ -66,16 +76,47 @@ function UserProfile() {
 				avatarSRC={profilePicture}
 				username={username}
 			/>
+
 			<p className="userProfile--summary">Summary</p>
 			<div className="profileButtonsBar">
-				{profileButtons.map(item => (
+				<CategoryCard
+					title="Completed"
+					slug="completed"
+					src="completed.png"
+					value={completed !== undefined ? completed.length : 0}
+					owner={username}
+				/>
+				<CategoryCard
+					title="In plans"
+					slug="inPlans"
+					src="in_plans.png"
+					value={inPlans !== undefined ? inPlans.length : 0}
+					owner={username}
+				/>
+				<CategoryCard
+					title="Abandoned"
+					slug="abandoned"
+					src="abandoned.png"
+					value={abandoned !== undefined ? abandoned.length : 0}
+					owner={username}
+				/>
+				<CategoryCard
+					title="Playing"
+					slug="playing"
+					src="playing.png"
+					value={playing !== undefined ? playing.length : 0}
+					owner={username}
+				/>
+				{/* <CategoryCard title="abandoned" value={abandoned.length} />
+				<CategoryCard title="playing" value={playing.length} /> */}
+				{/* {profileButtons.map(item => (
 					<CategoryCard
 						key={item.id}
 						src={item.src}
 						title={item.title}
 						value={item.value}
 					/>
-				))}
+				))} */}
 			</div>
 			<p className="userProfile--collections">Collections</p>
 			<div className="collectionsButtonsBar">

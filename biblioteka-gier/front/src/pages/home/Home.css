@@ -72,6 +72,7 @@
 
 .gameCard {
   display: flex;
+  margin: 3px;
   flex-direction: column;
   margin-bottom: 1.5rem;
   color: white;

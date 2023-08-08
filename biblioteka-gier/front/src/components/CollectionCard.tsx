@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 function CollectionCard(props: { [key: string | number]: string | number }) {
 	const navigate = useNavigate();
 	const handleClick = (id: number) => {
-		navigate(`/collection/${id}`);
+		navigate(`/customCollection/${id}`);
 	};
 	return (
 		<>

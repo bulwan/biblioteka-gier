@@ -22,31 +22,6 @@
     "developers": {
       "type": "string"
     },
-    "genres": {
-      "type": "customField",
-      "options": [
-        "Action",
-        "Indie",
-        "Adventure",
-        "RPG",
-        "Strategy",
-        "Shooter",
-        "Casual",
-        "Simulation",
-        "Puzzle",
-        "Arcade",
-        "Platformer",
-        "Massively Multiplayer",
-        "Racing",
-        "Sports",
-        "Fighting",
-        "Family",
-        "Board Games",
-        "Educational",
-        "Card"
-      ],
-      "customField": "plugin::multi-select.multi-select"
-    },
     "score": {
       "type": "integer",
       "max": 100,
@@ -66,7 +41,7 @@
         "audios"
       ]
     },
-    "genres_2s": {
+    "genres": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::genre.genre",

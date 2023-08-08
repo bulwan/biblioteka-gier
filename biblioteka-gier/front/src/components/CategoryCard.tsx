@@ -1,7 +1,12 @@
 import "../pages/userProfile/userProfile.css";
+import { useNavigate } from "react-router-dom";
 function CategoryCard(props: { [key: string | number]: string | number }) {
+	const navigate = useNavigate();
+	const handleClick = (id: number) => {
+		navigate(`/collection/${props.owner}/${props.slug}`);
+	};
 	return (
-		<div className="categoryCard">
+		<div className="categoryCard" onClick={() => handleClick(props.title)}>
 			<div className="categoryCard--icon">
 				<img src={`./src/images/${props.src}`}></img>
 			</div>

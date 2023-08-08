@@ -10,6 +10,8 @@ import GameInformation from "./GameInformation";
 import Examples from "../pages/home/examples";
 import NavbarGames from "./NavbarGames";
 import { useEffect, useState } from "react";
+import CategoryCard from "./CategoryCard";
+import StatusDetails from "./StatusDetials";
 
 function Navbar() {
 	const navigate = useNavigate();
@@ -100,8 +102,15 @@ function Navbar() {
 					element={<Register src={"prey.jpg"} />}
 				/>
 				<Route path="me" element={<UserProfile />} />
-				<Route path="/collection/:id" element={<CollectionDetail />} />
+				<Route
+					path="/customCollection/:id"
+					element={<CollectionDetail />}
+				/>
 				<Route path="/game/:id" element={<GameInformation />} />
+				<Route
+					path="/collection/:username/:name"
+					element={<StatusDetails />}
+				/>
 			</Routes>
 		</>
 	);
