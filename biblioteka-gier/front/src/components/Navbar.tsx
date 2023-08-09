@@ -10,6 +10,7 @@ import GameInformation from "./GameInformation";
 import NavbarGames from "./NavbarGames";
 import { useEffect, useState,useRef } from "react";
 import axios from "axios";
+import StatusDetails from "./StatusDetials";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -22,14 +23,23 @@ function Navbar() {
   const [matchGame, updateGame] = useState<any[]>([]);
   const [games, setGames] = useState<any[]>([]);
   const [error, setError] = useState(null);
+  const [open,setOpen] = useState(false);
+  let navbarRef:any = useRef();
   useEffect(() => {
 	const time = setTimeout(() => {
 	  const filteredGames: any = findGame();
 	  updateGame(filteredGames);
 	}, 500);
-  
+  const handler = (e:any) => {
+    if(!navbarRef.current.contains(e.target)) {
+      setOpen(false);
+      console.log(navbarRef.current)
+    }
+  }
+  document.addEventListener("mousedown",handler)
 	return () => {
 	  clearTimeout(time);
+    document.removeEventListener("mousedown",handler)
 	};
   }, [matchGame]);
   if (error) {
@@ -38,14 +48,6 @@ function Navbar() {
   const changeInput = (event: any) => {
     updateInput(event.target.value);
   };
-  const changeClick = (event:any) => {
-	if (event.target.className !== 'gameList__gameCard') {
-		console.log('Kliknięto na coś innego niż div');  
-  } else {
-	console.log(event.target.className)
-	console.log("kliknieto diva")
-}
-}
   const findGame = () => {
 	axios
 	  .get("http://localhost:1337/api/games")
@@ -53,11 +55,9 @@ function Navbar() {
 		setGames(data.data);
 	  })
 	  .catch((error) => {
+    console.log(error)
 		setError(error);
-	  });
-	  if (error) {
-    return <div>Kolego, jakiś error wystąpił</div>;
-  }
+	  })
     if (input.length >= 3) {
       let result = games.filter((game) => {
         return game.attributes.title.toLowerCase().includes(input.toLowerCase());
@@ -69,21 +69,21 @@ function Navbar() {
   };
   return (
     <>
-      <nav className="navbar">
+      <nav className="navbar"onClick = {() => {setOpen(!open)}}>
         <div className="navbar__title">
           <NavLink to="/" className="title__navlink">
             Gamer Quest
           </NavLink>
         </div>
 
-        <div className="navbar__searchBar">
+        <div className='navbar__searchBar' ref = {navbarRef}>
           <input
             type="search"
             placeholder="Search Your Specific Game..."
             onChange={changeInput}
           ></input>
         </div>
-        <div className="navbar_results" onClick = {changeClick}>
+        <div className={`navbar_results ${open? 'active' : 'inactive'}`}>
           {matchGame.map((game) => (
             <NavbarGames
               key={game.id}
@@ -116,14 +116,24 @@ function Navbar() {
           )}
         </div>
       </nav>
-      <Routes>
-        <Route path="login" element={<Login src={"alanwake2.jpg"} />} />
-        <Route path="/" element={<Home />} />
-        <Route path="register" element={<Register src={"prey.jpg"} />} />
-        <Route path="me" element={<UserProfile />} />
-        <Route path="/collection/:id" element={<CollectionDetail />} />
-        <Route path="/game/:id" element={<GameInformation />} />
-      </Routes>
+			<Routes>
+				<Route path="login" element={<Login src={"alanwake2.jpg"} />} />
+				<Route path="/" element={<Home />} />
+				<Route
+					path="register"
+					element={<Register src={"prey.jpg"} />}
+				/>
+				<Route path="me" element={<UserProfile />} />
+				<Route
+					path="/customCollection/:id"
+					element={<CollectionDetail />}
+				/>
+				<Route path="/game/:id" element={<GameInformation />} />
+				<Route
+					path="/collection/:username/:name"
+					element={<StatusDetails />}
+				/>
+			</Routes>
     </>
   );
 }

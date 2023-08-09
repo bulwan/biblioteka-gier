@@ -84,12 +84,12 @@
 	height: fit-content;
 	border-radius: 15px;
 	cursor: pointer;
-	transition: 0.2s ease;
+	transition: 0.4s ease;
 	.gameCard__id {
 		display: hidden;
 	}
 	&:hover {
-		transform: translateY(-2px);
+		transform: translateY(-8px);
 	}
 	.gameCard__image {
 		background-size: contain;
