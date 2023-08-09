@@ -1,11 +1,9 @@
 import CategoryCard from "../../components/CategoryCard";
 import CollectionCard from "../../components/CollectionCard";
 import ProfileHeader from "../../components/ProfileHeader";
-import profileButtons from "../../components/profilesButton";
 import { useState, useEffect } from "react";
 import "./userProfile.css";
 import axios from "axios";
-import GameCard from "../../components/GameCard";
 function UserProfile() {
 	const url = "http://localhost:1337";
 	const [profilePicture, setProfilePicture] = useState("");
@@ -33,7 +31,6 @@ function UserProfile() {
 					: setBackgroundPicture(
 							url + response.data.backgroundPicture.url
 					  );
-				console.log(response.data);
 				setUsername(response.data.username);
 				setCompleted(response.data.completed);
 				setInPlans(response.data.inPlans);
