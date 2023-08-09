@@ -69,19 +69,22 @@ function Navbar() {
   };
   return (
     <>
-      <nav className="navbar"onClick = {() => {setOpen(!open)}}>
+      <nav className="navbar">
         <div className="navbar__title">
           <NavLink to="/" className="title__navlink">
             Gamer Quest
           </NavLink>
         </div>
 
-        <div className='navbar__searchBar' ref = {navbarRef}>
+        <div className='navbar__searchBar' onClick = {() => {setOpen(!open)}}>
           <input
             type="search"
             placeholder="Search Your Specific Game..."
             onChange={changeInput}
+            ref = {navbarRef}
           ></input>
+
+
         </div>
         <div className={`navbar_results ${open? 'active' : 'inactive'}`}>
           {matchGame.map((game) => (
