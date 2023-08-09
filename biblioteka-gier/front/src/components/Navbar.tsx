@@ -25,6 +25,20 @@ function Navbar() {
   const [error, setError] = useState(null);
   const [open,setOpen] = useState(false);
   let navbarRef:any = useRef();
+  const getData = async () => {axios
+    .get("http://localhost:1337/api/games")
+    .then(({ data }) => {
+    setGames(data.data);
+    })
+    .catch((error) => {
+    console.log(error)
+    setError(error);
+    })
+  }
+  useEffect(() => {
+    getData();
+}, [])
+
   useEffect(() => {
 	const time = setTimeout(() => {
 	  const filteredGames: any = findGame();
@@ -42,22 +56,10 @@ function Navbar() {
     document.removeEventListener("mousedown",handler)
 	};
   }, [matchGame]);
-  if (error) {
-    return <div>Kolego, jakiś error wystąpił</div>;
-  }
   const changeInput = (event: any) => {
     updateInput(event.target.value);
   };
   const findGame = () => {
-	axios
-	  .get("http://localhost:1337/api/games")
-	  .then(({ data }) => {
-		setGames(data.data);
-	  })
-	  .catch((error) => {
-    console.log(error)
-		setError(error);
-	  })
     if (input.length >= 3) {
       let result = games.filter((game) => {
         return game.attributes.title.toLowerCase().includes(input.toLowerCase());
@@ -89,7 +91,7 @@ function Navbar() {
         <div className={`navbar_results ${open? 'active' : 'inactive'}`}>
           {matchGame.map((game) => (
             <NavbarGames
-              key={game.id}
+              id={game.id}
               title={game.attributes.title}
               image={game.attributes.image}
               rating={game.attributes.rating}

@@ -126,8 +126,6 @@
   overflow: hidden;
   -webkit-transition: 0.6s;
   transition: 0.6s;
-  -webkit-transform: translateY(15px);
-          transform: translateY(15px);
 }
 .navbar .navbar_results.active .gameList__gameCard {
   display: -webkit-box;
