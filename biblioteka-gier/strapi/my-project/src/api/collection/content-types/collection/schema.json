@@ -15,13 +15,6 @@
     "name": {
       "type": "string"
     },
-    "isCustomList": {
-      "type": "boolean",
-      "default": true
-    },
-    "collectionID": {
-      "type": "uid"
-    },
     "games": {
       "type": "relation",
       "relation": "oneToMany",

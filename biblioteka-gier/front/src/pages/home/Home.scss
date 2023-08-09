@@ -84,12 +84,12 @@
 	height: fit-content;
 	border-radius: 15px;
 	cursor: pointer;
-	transition: 0.4s ease;
+	transition: 0.2s ease;
 	.gameCard__id {
 		display: hidden;
 	}
 	&:hover {
-		transform: translateY(-8px);
+		background-color: #222;
 	}
 	.gameCard__image {
 		background-size: contain;
@@ -138,16 +138,55 @@
 			height: 26px;
 		}
 	}
-	.gameCard__addToLibrary {
-		margin: 2% 0 0 55%;
-		width: 45%;
-		background-image: url("../../images/addToLibrary-icon.png");
-		background-size: 28px 28px;
-		background-repeat: no-repeat;
-		cursor: pointer;
-		background-position: center right 8px;
-		p {
-			text-align: left;
-		}
+}
+.gameCard__addToCollections {
+	display: flex;
+	justify-content: space-around;
+	margin: 25px 15px 15px 15px;
+	font-size: 16px;
+	span {
+		font-weight: 900;
+		font-size: 34px;
+		line-height: 10px;
+		position: relative;
+		top: 6px;
 	}
+	&-dropdown {
+		width: 45%;
+		position: relative;
+		display: inline-block;
+	}
+	&-button {
+		background: #454545;
+		border-radius: 8px;
+		padding: 10px;
+	}
+	&-content {
+		width: 100%;
+		z-index: 1;
+		display: none;
+		position: absolute;
+		border-radius: 15px;
+		background: #303030;
+	}
+	&-content div {
+		background: #303030;
+		padding: 5px;
+		border-radius: 5px;
+	}
+}
+.gameCard__addToCollections-content div:hover {
+	background: #555;
+	transition: 0.2s ease;
+}
+.gameCard__addToCollections-dropdown:hover .gameCard__addToCollections-content {
+	display: block;
+	transition: 0.2s ease;
+}
+.gameCard__addToCollections-dropdown:hover .gameCard__addToCollections-button {
+	background: #777;
+	transition: 0.2s ease;
+}
+.dropdown-custom {
+	background: #303030;
 }
