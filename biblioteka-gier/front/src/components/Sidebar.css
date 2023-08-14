@@ -1,0 +1,304 @@
+.sidebar {
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+.sidebar .sidebar__titles {
+  text-align: center;
+  font-weight: 700;
+  font-size: 21px;
+  text-align: center;
+  margin: 15% auto;
+}
+.sidebar .sidebar__allGames {
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 22px;
+  outline: none;
+  border: none;
+  height: 40px;
+  width: 140px;
+  margin: 0 auto;
+  background-color: #1f1e1e;
+  border-radius: 25px;
+  transition: 0.6s;
+}
+.sidebar .sidebar__allGames:hover {
+  transition: 0.6s;
+  background-color: #080808;
+}
+.sidebar .sidebar__bestOfAllTime {
+  transition: 0.6s;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+  outline: none;
+  border: none;
+  height: 75px;
+  width: 140px;
+  background-color: #1f1e1e;
+  border-radius: 25px;
+  margin: 0 auto 20% auto;
+  padding-top: 40px;
+  background-size: 36px 36px;
+  font-family: "Montserrat", sans-serif;
+  background-repeat: no-repeat;
+  background-position: center bottom 35px;
+  cursor: pointer;
+  background-image: url("../images/bestOf-icon.png");
+}
+.sidebar .sidebar__bestOfAllTime:hover {
+  transition: 0.6s;
+  background-color: #080808;
+}
+.sidebar .sidebar__popular2023 {
+  transition: 0.6s;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+  outline: none;
+  border: none;
+  height: 75px;
+  width: 140px;
+  background-color: #1f1e1e;
+  border-radius: 25px;
+  margin: 0 auto 20% auto;
+  padding-top: 40px;
+  background-size: 36px 36px;
+  font-family: "Montserrat", sans-serif;
+  background-repeat: no-repeat;
+  background-position: center bottom 35px;
+  cursor: pointer;
+  background-image: url("../images/popular-icon.png");
+}
+.sidebar .sidebar__popular2023:hover {
+  transition: 0.6s;
+  background-color: #080808;
+}
+.sidebar .sidebar__last30Days {
+  transition: 0.6s;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+  outline: none;
+  border: none;
+  height: 75px;
+  width: 140px;
+  background-color: #1f1e1e;
+  border-radius: 25px;
+  margin: 0 auto 20% auto;
+  padding-top: 40px;
+  background-size: 36px 36px;
+  font-family: "Montserrat", sans-serif;
+  background-repeat: no-repeat;
+  background-position: center bottom 35px;
+  cursor: pointer;
+  background-image: url("../images/last30days-icon.png");
+}
+.sidebar .sidebar__last30Days:hover {
+  transition: 0.6s;
+  background-color: #080808;
+}
+.sidebar .sidebar__comingSoon {
+  transition: 0.6s;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+  outline: none;
+  border: none;
+  height: 75px;
+  width: 140px;
+  background-color: #1f1e1e;
+  border-radius: 25px;
+  margin: 0 auto 20% auto;
+  padding-top: 40px;
+  background-size: 36px 36px;
+  font-family: "Montserrat", sans-serif;
+  background-repeat: no-repeat;
+  background-position: center bottom 35px;
+  cursor: pointer;
+  background-image: url("../images/comingSoon-icon.png");
+}
+.sidebar .sidebar__comingSoon:hover {
+  transition: 0.6s;
+  background-color: #080808;
+}
+.sidebar .sidebar__windows {
+  transition: 0.6s;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+  outline: none;
+  border: none;
+  height: 75px;
+  width: 140px;
+  background-color: #1f1e1e;
+  border-radius: 25px;
+  margin: 0 auto 20% auto;
+  padding-top: 40px;
+  background-size: 36px 36px;
+  font-family: "Montserrat", sans-serif;
+  background-repeat: no-repeat;
+  background-position: center bottom 35px;
+  cursor: pointer;
+  background-image: url("../images/windows-icon.png");
+}
+.sidebar .sidebar__windows:hover {
+  transition: 0.6s;
+  background-color: #080808;
+}
+.sidebar .sidebar__playstation {
+  transition: 0.6s;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+  outline: none;
+  border: none;
+  height: 75px;
+  width: 140px;
+  background-color: #1f1e1e;
+  border-radius: 25px;
+  margin: 0 auto 20% auto;
+  padding-top: 40px;
+  background-size: 36px 36px;
+  font-family: "Montserrat", sans-serif;
+  background-repeat: no-repeat;
+  background-position: center bottom 35px;
+  cursor: pointer;
+  background-image: url("../images/playstation-icon.png");
+}
+.sidebar .sidebar__playstation:hover {
+  transition: 0.6s;
+  background-color: #080808;
+}
+.sidebar .sidebar__xbox {
+  transition: 0.6s;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+  outline: none;
+  border: none;
+  height: 75px;
+  width: 140px;
+  background-color: #1f1e1e;
+  border-radius: 25px;
+  margin: 0 auto 20% auto;
+  padding-top: 40px;
+  background-size: 36px 36px;
+  font-family: "Montserrat", sans-serif;
+  background-repeat: no-repeat;
+  background-position: center bottom 35px;
+  cursor: pointer;
+  background-image: url("../images/xbox-icon.png");
+}
+.sidebar .sidebar__xbox:hover {
+  transition: 0.6s;
+  background-color: #080808;
+}
+.sidebar .sidebar__showAllPlatforms {
+  cursor: pointer;
+  background-color: #000000;
+  color: #8f8d8d;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  outline: none;
+  height: 60px;
+  padding-bottom: 30px;
+  border: none;
+  background-image: url("../images/arrow-icon.png");
+  background-size: 36px 36px;
+  background-repeat: no-repeat;
+  background-position: center top 30px;
+}
+.sidebar .sidebar__rpg {
+  transition: 0.6s;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+  outline: none;
+  border: none;
+  height: 75px;
+  width: 140px;
+  background-color: #1f1e1e;
+  border-radius: 25px;
+  margin: 0 auto 20% auto;
+  padding-top: 40px;
+  background-size: 36px 36px;
+  font-family: "Montserrat", sans-serif;
+  background-repeat: no-repeat;
+  background-position: center bottom 35px;
+  cursor: pointer;
+  background-image: url("../images/rpg-icon.png");
+}
+.sidebar .sidebar__rpg:hover {
+  transition: 0.6s;
+  background-color: #080808;
+}
+.sidebar .sidebar__fps {
+  transition: 0.6s;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+  outline: none;
+  border: none;
+  height: 75px;
+  width: 140px;
+  background-color: #1f1e1e;
+  border-radius: 25px;
+  margin: 0 auto 20% auto;
+  padding-top: 40px;
+  background-size: 36px 36px;
+  font-family: "Montserrat", sans-serif;
+  background-repeat: no-repeat;
+  background-position: center bottom 35px;
+  cursor: pointer;
+  background-image: url("../images/fps-icon.png");
+}
+.sidebar .sidebar__fps:hover {
+  transition: 0.6s;
+  background-color: #080808;
+}
+.sidebar .sidebar__adventure {
+  transition: 0.6s;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+  outline: none;
+  border: none;
+  height: 75px;
+  width: 140px;
+  background-color: #1f1e1e;
+  border-radius: 25px;
+  margin: 0 auto 20% auto;
+  padding-top: 40px;
+  background-size: 36px 36px;
+  font-family: "Montserrat", sans-serif;
+  background-repeat: no-repeat;
+  background-position: center bottom 35px;
+  cursor: pointer;
+  background-image: url("../images/adventure-icon.png");
+}
+.sidebar .sidebar__adventure:hover {
+  transition: 0.6s;
+  background-color: #080808;
+}
+.sidebar .sidebar__showAllGenres {
+  cursor: pointer;
+  background-color: #000000;
+  color: #8f8d8d;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  outline: none;
+  height: 60px;
+  padding-bottom: 30px;
+  border: none;
+  background-image: url("../images/arrow-icon.png");
+  background-size: 36px 36px;
+  background-repeat: no-repeat;
+  background-position: center top 30px;
+}/*# sourceMappingURL=Sidebar.css.map */
