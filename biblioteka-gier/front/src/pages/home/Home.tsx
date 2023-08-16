@@ -35,7 +35,6 @@ function Home() {
         setIsLoading(false);
       })
       .catch((error) => {
-        setError(error);
         console.log(error);
       });
   };
@@ -58,15 +57,15 @@ function Home() {
           <div className="home__mainContainer">
             <OrderBy />
             <div className="home__gameContainer">
-              {gamecard.map((elements: any) => (
+              {gamecard.map((elements: any,index:number) => (
                 <Link
-                  to={`/game/${elements.id}`}
-                  state={{ game: elements }}
-                  key={elements.id}
-                  className="gameContainer__link"
-                >
+				to={`/game/${elements.id}`}
+				state={{ game: elements }}
+				key={`${elements.id}-${index}`}
+				className="gameContainer__link"
+			  >
                   <GameCard
-                    key={elements.id}
+                     key={`gameCard-${elements.id}`}
                     id={elements.id}
                     image={elements.background_image}
                     rating={elements.metacritic}

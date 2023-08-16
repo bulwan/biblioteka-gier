@@ -11,7 +11,6 @@ type gameInformationProps = {
   platforms: string;
   description: string;
 };
-
 const GameInformation: React.FC<gameInformationProps> = () => {
   const location = useLocation();
   const game = location.state.game;
