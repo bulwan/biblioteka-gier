@@ -15,8 +15,14 @@ function Home() {
 
   const fetchData = () => {
     axios
-      .get(`https://api.rawg.io/api/games?key=03af44d9d3e24608b846532caa18667f&page=${currentPage}&page_size=50&metacritic=70,100`)
+      .get(
+        `https://api.rawg.io/api/games?key=03af44d9d3e24608b846532caa18667f&page=${currentPage}&page_size=50&metacritic=70,100`
+      )
       .then((response) => {
+        const newGames = gamecard;
+        for (const game of response.data.results) {
+          newGames.push(game);
+        }
         if (response.data.results.length === 0) {
           setHasMore(false);
         } else {
@@ -33,9 +39,11 @@ function Home() {
         console.log(error);
       });
   };
+
   useEffect(() => {
     fetchData();
   }, []);
+
   return (
     <InfiniteScroll
       dataLength={gamecard.length}
@@ -52,11 +60,11 @@ function Home() {
             <div className="home__gameContainer">
               {gamecard.map((elements: any) => (
                 <Link
-				to={`/game/${elements.id}`}
-				state={{ game: elements }}
-				key={elements.id}
-				className="gameContainer__link"
-			  >
+                  to={`/game/${elements.id}`}
+                  state={{ game: elements }}
+                  key={elements.id}
+                  className="gameContainer__link"
+                >
                   <GameCard
                     key={elements.id}
                     id={elements.id}
@@ -75,5 +83,4 @@ function Home() {
     </InfiniteScroll>
   );
 }
-
 export default Home;

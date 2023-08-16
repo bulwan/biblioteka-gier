@@ -19,16 +19,39 @@ const GameInformation: React.FC<gameInformationProps> = () => {
   const [gameInfo, setGameInfo] = useState<any>(null);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://api.rawg.io/api/games/${gameId}?key=03af44d9d3e24608b846532caa18667f`
-      )
-      .then((response) => {
-        setGameInfo(response.data);
-      })
-      .catch((error) => {
-        console.error("Błąd pobierania informacji o grze:", error);
-      });
+    if (gameId) {
+      if (localStorage.getItem(gameId)) {
+        let newGame = localStorage.getItem(gameId);
+        if (newGame) {
+          setGameInfo(JSON.parse(newGame));
+          console.log("NIE MA ZAPYTANIA");
+        }
+      } else {
+        console.log("JEST ZAPYTANIE");
+        axios
+          .get(`https://api.rawg.io/api/games/${gameId}?key=03af44d9d3e24608b846532caa18667f`)
+          .then((response) => {
+            setGameInfo(response.data);
+            localStorage.setItem(gameId, JSON.stringify(response.data));
+            axios
+              .get(`https://api.rawg.io/api/games/${gameId}/screenshots?key=03af44d9d3e24608b846532caa18667f`)
+              .then((response) => {
+                const cacheGame = JSON.parse(localStorage.getItem(gameId) || '{}');
+                const newData = {
+                  ...cacheGame,
+                  screenshots: { ...response.data.results },
+                };
+                localStorage.setItem(gameId, JSON.stringify(newData));
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          })
+          .catch((error) => {
+            console.error("Błąd pobierania informacji o grze:", error);
+          });
+      }
+    }
   }, [gameId]);
   const ratingColor =
     game.metacritic <= 49 ? "#f00" : game.metacritic <= 74 ? "#fc3" : "#6c3";

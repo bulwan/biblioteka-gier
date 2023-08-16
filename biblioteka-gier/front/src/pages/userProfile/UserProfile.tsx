@@ -47,17 +47,15 @@ function UserProfile() {
 			.then(response => {
 				const newCollections = [];
 				for (const collection of response.data.collections) {
-					if (collection.isCustomList === true) {
-						newCollections.push({
-							id: collection.id,
-							title: collection.name,
-							src:
-								url +
-								collection.backgroundPicture.formats.small.url,
-							value: collection.games.length,
-							backgroudSRC: "nazwa gry",
-						});
-					}
+					newCollections.push({
+						id: collection.id,
+						title: collection.name,
+						src:
+							url +
+							collection.backgroundPicture.formats.small.url,
+						value: collection.games.length,
+						backgroudSRC: "nazwa gry",
+					});
 				}
 				setCollections(newCollections);
 			})
