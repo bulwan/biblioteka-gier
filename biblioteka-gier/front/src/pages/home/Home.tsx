@@ -10,37 +10,37 @@ function Home() {
   const [gamecard, setGamecard] = useState<any>([]);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = () => {
     axios
-      .get(
-        `https://api.rawg.io/api/games?key=2b4ab8ba5c2342b180e48f08be47c96d&page=${currentPage}&page_size=15&metacritic=70,100`
-      )
+      .get(`https://api.rawg.io/api/games?key=03af44d9d3e24608b846532caa18667f&page=${currentPage}&page_size=50&metacritic=70,100`)
       .then((response) => {
-        setTimeout(() => {
+        if (response.data.results.length === 0) {
+          setHasMore(false);
+        } else {
           setGamecard((prevData: any) => [
             ...prevData,
             ...response.data.results,
           ]);
           setCurrentPage(currentPage + 1);
-        }, 500);
+        }
+        setIsLoading(false);
       })
       .catch((error) => {
         setError(error);
         console.log(error);
       });
-    console.log(gamecard);
   };
-
   useEffect(() => {
     fetchData();
   }, []);
-
   return (
     <InfiniteScroll
       dataLength={gamecard.length}
       next={fetchData}
-      hasMore={true}
+      hasMore={hasMore && !isLoading}
       loader={<Loading />}
       endMessage={<p>No more data to load.</p>}
     >

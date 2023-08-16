@@ -17,25 +17,27 @@ function Navbar() {
     localStorage.removeItem("token");
     navigate("/");
     window.location.reload();
-  };
+  }
   const [input, updateInput] = useState("");
   const [matchGame, updateGame] = useState<any[]>([]);
   const [games, setGames] = useState<any[]>([]);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
+  const [debouncedInput, setDebouncedInput] = useState("");
   let navbarRef: any = useRef<any>(null);
+  const fetchGames = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.rawg.io/api/games?key=03af44d9d3e24608b846532caa18667f&page=1`
+      );
+      setGames(response.data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    axios
-      .get(
-        "https://api.rawg.io/api/games?key=2b4ab8ba5c2342b180e48f08be47c96d&page_size=450"
-      )
-      .then((response) => {
-        setGames(response.data.results);
-      })
-      .catch((error) => {
-        setError(error);
-        console.log(error);
-      });
+    fetchGames();
   }, []);
   useEffect(() => {
     const time = setTimeout(() => {
@@ -67,7 +69,6 @@ function Navbar() {
       return [];
     }
   };
-
   return (
     <>
       <nav className="navbar">
