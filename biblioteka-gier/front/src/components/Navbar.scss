@@ -1,5 +1,5 @@
 .navbar {
-	width: 100%;
+	max-width:1280px;
 	height: 67px;
 	display: flex;
 	flex-direction: row;
@@ -83,6 +83,9 @@
 		border-radius: 5px;
 		overflow: hidden;
 		transition:0.6s;
+		.results__link {
+			text-decoration:none;
+		}
 		.gameList__gameCard {
 			display: flex;
 			align-items: center;
@@ -91,22 +94,37 @@
 			border-bottom: 2px solid #ccc;
 		}
 		.gameList__gameCard img {
-			width: 60px;
-			height: 80px;
+			width: 80px;
+			height: 90px;
 			object-fit: cover;
 			margin-right: 10px;
 		}
 		.gameCard__title {
-			margin: 0;
+			width:20%;
+			font-weight:600;
+			margin: 0 auto;
 			font-size: 20px;
 		}
 		.gameCard__platforms {
-			margin: 0 0 0 2%;
-			img {
-				width: auto;
-				height: 25px;
+			margin: 0 auto;
+			width: 55%;
+			p {
+				width:auto;
+				font-size:18px;
+				text-align:center;
 				object-fit: contain;
 			}
+		}
+		.gameCard__rating {
+			font-size:18px;
+			font-weight: 700;
+			text-align: center;
+			border-radius: 5px;
+			background-color: #66cc33;	
+			padding: 10px;
+			margin: 0 auto;
+			width: 25px;
+			height: 20px;
 		}
 	}
 	.navbar_results.inactive {
@@ -122,6 +140,9 @@
 		border-radius: 5px;
 		overflow: hidden;
 		transition:0.4s;
+		.results__link {
+			text-decoration:none;
+		}
 		.gameList__gameCard {
 			display: flex;
 			align-items: center;
@@ -138,10 +159,12 @@
 		}
 		.gameCard__title {
 			margin: 0;
+			width:auto;
 			font-size: 20px;
 		}
 		.gameCard__platforms {
-			margin: 0 0 0 1.8%;
+			margin: 0 0 0 0;
+			height:90%;
 			img {
 				width: auto;
 				height: 25px;

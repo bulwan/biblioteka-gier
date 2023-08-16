@@ -1,9 +1,9 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "../pages/home/Home.css";
 interface gameCardProps {
-	id: number;
+	id: any;
 	image: string;
-	rating: string;
+	rating: number;
 	title: string;
 	platforms: string;
 	developers: string;
@@ -20,15 +20,17 @@ const GameCard: React.FC<gameCardProps> = ({
 	const handleClick = (id: number) => {
 		navigate(`/game/${id}`);
 	};
+	const ratingColor = rating <= 49 ? '#f00' : rating <= 74 ? '#fc3' : '#6c3';
 	return (
 		<div key={id} className="gameCard">
 			<div className="gameCard-clickable" onClick={() => handleClick(id)}>
 				<div className="gameCard__image">
 					<img src={image} />
 				</div>
-				<div className="gameCard__rating">{rating}</div>
+				<div className="gameCard__rating" style={{ backgroundColor: ratingColor }}>{rating}</div>
 				<div className="gameCard__title">{title}</div>
 				<div className="gameCard__platforms">{developers}</div>
+				
 			</div>
 			<div className="gameCard__addToCollections">
 				<div className="gameCard__addToCollections-dropdown">

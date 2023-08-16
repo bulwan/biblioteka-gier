@@ -1,34 +1,46 @@
-import GameInformation from "../../Components/GameInformation";
-import SideBar from "../../Components/Sidebar";
 import "./gameDetails.scss";
 import { useParams } from 'react-router-dom';
 import example from "../home/example"
 import { useEffect, useState } from "react";
+import axios from "axios";
+import GameInformation from "../../components/GameInformation";
 function GameDetails() {
   const params = useParams();
   const gameId:any = params.id;
-  const [game,setGame] = useState('')
-  console.log(gameId);
+  const [error, setError] = useState(null);
+  const [game,setGame] = useState<any>([])
+  const [gry, teGry] = useState<any>([]);
+  const getData = async () => {axios
+		.get("http://localhost:1337/api/games")
+		.then(({ data }) => {
+		setGame(data.data);
+		})
+		.catch((error) => {
+		console.log(error)
+		setError(error);
+		})
+	  }
+	  useEffect(() => {
+      getData();
+    }, []);
   
-    useEffect(()=> {
-for(let elements of example) {
-        if (elements.key == gameId) {
-          setGame(elements)
-        }
+    useEffect(() => {
+      const foundGame = game.find((element: any) => element.id == gameId);
+      if (foundGame) {
+        teGry(foundGame);
       }
-      console.log(game)
-    }, [])
-    
+    }, [gameId, game]);
   return (
     <div className="gameDetails">
       <div className="gameDetails__mainElements">
         <SideBar/>
        <GameInformation
-       id = {game.id}
-       image = {game.image}
-       rating= {game.rating}
-       title= {game.title}
-       platforms= {game.platforms}
+       id = {gry.id}
+       image = {gry.image}
+       rating= {gry.rating}
+       title= {gry.title}
+       platforms= {gry.platforms}
+       description = {gry.description}
        />
       </div>
     </div>

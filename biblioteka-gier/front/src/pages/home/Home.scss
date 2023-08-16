@@ -71,6 +71,9 @@
 	flex-direction: row;
 	justify-content: space-around;
 	flex-wrap: wrap;
+	.gameContainer__link {
+		text-decoration:none;
+	}
 }
 .gameCard {
 	display: flex;
@@ -84,11 +87,12 @@
 	height: fit-content;
 	border-radius: 15px;
 	cursor: pointer;
-	transition: 0.2s ease;
+	transition: 0.5s ease;
 	.gameCard__id {
 		display: hidden;
 	}
 	&:hover {
+		transform:translateY(-5px);
 		background-color: #222;
 	}
 	.gameCard__image {
@@ -190,3 +194,28 @@
 .dropdown-custom {
 	background: #303030;
 }
+.loading__container {
+	overflow: hidden;
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	margin:0 0 0 200px;
+  }
+  .loading__container:after {
+	content: " ";
+	display: block;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	border: 6px solid #fff;
+	border-color: #fff transparent #fff transparent;
+	animation:loading__container 1s linear infinite;
+  }
+  @keyframes loading__container {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
