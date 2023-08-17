@@ -10,6 +10,8 @@ import GameInformation from "./GameInformation";
 import NavbarGames from "./NavbarGames";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { API_KEY } from "../.././key.tsx";
+import Loading from "../components/Loading.tsx"
 import StatusDetails from "./StatusDetials";
 function Navbar() {
   const navigate = useNavigate();
@@ -17,33 +19,40 @@ function Navbar() {
     localStorage.removeItem("token");
     navigate("/");
     window.location.reload();
-  }
+  };
   const [input, updateInput] = useState("");
-  const [matchGame, updateGame] = useState<any[]>([]);
   const [games, setGames] = useState<any[]>([]);
-  const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
-  const [debouncedInput, setDebouncedInput] = useState("");
+  const [isFetching, setIsFetching] = useState(false);
   let navbarRef: any = useRef<any>(null);
   const fetchGames = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.rawg.io/api/games?key=03af44d9d3e24608b846532caa18667f&page=1`
-      );
-      setGames(response.data.results);
-    } catch (error) {
-      console.log(error);
+    if (input.length >= 3) {
+      setIsFetching(true);
+      try {
+        const response = await axios.get(
+          `https://api.rawg.io/api/games?key=${API_KEY}&search=${encodeURIComponent(
+            input
+          )}`
+        );
+        setGames(response.data.results.slice(0, 6));
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsFetching(false);
+      }
+    } else {
+      setGames([]);
     }
   };
 
   useEffect(() => {
-    fetchGames();
-  }, []);
+    if (input.length >= 3) {
+      const timeout = setTimeout(fetchGames, 500);
+      return () => clearTimeout(timeout);
+    }
+  }, [input]);
+
   useEffect(() => {
-    const time = setTimeout(() => {
-      const filteredGames: any = findGame();
-      updateGame(filteredGames);
-    }, 500);
     const handler = (e: any) => {
       if (!navbarRef.current.contains(e.target)) {
         setOpen(false);
@@ -51,23 +60,12 @@ function Navbar() {
     };
     document.addEventListener("mousedown", handler);
     return () => {
-      clearTimeout(time);
       document.removeEventListener("mousedown", handler);
     };
-  }, [matchGame]);
+  }, []);
+
   const changeInput = (event: any) => {
     updateInput(event.target.value);
-  };
-  const findGame = () => {
-    if (input.length >= 3) {
-      let filteredGames = games.filter((game) => {
-        return game.name.toLowerCase().includes(input.toLowerCase());
-      });
-      let result = filteredGames.slice(0, 6);
-      return result;
-    } else {
-      return [];
-    }
   };
   return (
     <>
@@ -90,8 +88,12 @@ function Navbar() {
             onChange={changeInput}
           ></input>
         </div>
-        <div className={`navbar_results ${open ? "active" : "inactive"}`} ref={navbarRef}>
-          {matchGame.map((game) => (
+        <div
+          className={`navbar_results ${open ? "active" : "inactive"}`}
+          ref={navbarRef}
+        >
+          {isFetching && <p>Loading...</p>}
+          {games.length > 0 && games.map((game) => (
             <Link
               to={`/game/${game.id}`}
               key={game.id}
@@ -104,12 +106,7 @@ function Navbar() {
                 title={game.name}
                 image={game.background_image}
                 rating={game.metacritic}
-                platforms={game.platforms
-                  .map(
-                    (platform: { platform: { name: any } }) =>
-                      platform.platform.name
-                  )
-                  .join(", ")}
+                platforms={game.platforms && game.platforms.map((platform: any) => platform.platform.name).join(", ")}
               />
             </Link>
           ))}
@@ -148,5 +145,4 @@ function Navbar() {
     </>
   );
 }
-
 export default Navbar;

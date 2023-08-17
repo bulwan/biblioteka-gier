@@ -71,22 +71,18 @@
 					text-align: center;
 					font-size: 22px;
 				}
-				img {
-					width: 32px;
-					height: 32px;
-				}
 			}
 			.infoContainer__releaseDate {
 				@include infoContainer__style();
 			}
 			.infoContainer__developer {
+
 				@include infoContainer__style();
 				p {
 					cursor: pointer;
 					transition: 0.6s;
 					&:hover {
 						color: #ffffff;
-						font-size: 23px;
 						transition: 0.6s;
 					}
 				}
@@ -100,18 +96,18 @@
 				}
 			}
 			.infoContainer__genre {
+				width:auto;
 				@include infoContainer__style();
 				.genre__names {
 					display: flex;
 					flex-direction: column;
 				}
 				p {
-					margin: 0 auto 15% auto;
+					margin: 0 auto 12% auto;
 					cursor: pointer;
 					transition: 0.6s;
 					&:hover {
 						color: #ffffff;
-						font-size: 23px;
 						transition: 0.6s;
 					}
 				}
@@ -214,20 +210,27 @@
 			}
 		}
 		.gameDetails__screenshotsContainer {
-			display: flex;
-			flex-direction: row;
-			margin: 5% auto;
+			margin: 5% auto 0 auto;
 			width: 95%;
-			height: 300px;
 			background-color: #0c0b0b;
-			border-radius: 10px;
+			border-radius: 5px;
 			img {
-				max-width: 100%;
 				border-radius: 5px;
-				margin: 4% auto;
-				max-width: 48%;
+				margin: 0 auto;
 				height: auto;
 				object-fit: cover;
+			}
+			.carousel-root {
+				.carousel {
+				 .carousel-status {
+					font-size:12px;
+					font-weight:600;
+					margin:0 auto;
+				 }
+				 .control-arrow {
+					opacity:1;
+				 }
+				}
 			}
 		}
 		.gameDetails_descriptionTitle {
@@ -251,4 +254,5 @@
 			}
 		}
 	}
+	
 }

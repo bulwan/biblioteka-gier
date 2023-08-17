@@ -5,7 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../../components/Loading";
-import { API_KEY } from "../../../key.jsx";
+import { API_KEY } from "../../../key.tsx";
 import { Link } from "react-router-dom";
 function Home() {
   const [gamecard, setGamecard] = useState<any>([]);

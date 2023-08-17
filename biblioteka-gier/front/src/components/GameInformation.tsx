@@ -4,6 +4,8 @@ import axios from "axios";
 import Sidebar from "./Sidebar";
 import "../pages/gameDetails/gameDetails.css";
 import { API_KEY } from "../../key.jsx";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 type gameInformationProps = {
   id: any;
   image: string;
@@ -13,9 +15,39 @@ type gameInformationProps = {
   description: string;
 };
 const GameInformation: React.FC<gameInformationProps> = () => {
-  const location = useLocation();
-  const { id: gameId } = useParams();
+  const { id } = useParams();
+  const gameId: string = String(id);
   const [gameInfo, setGameInfo] = useState<any>(null);
+  const [screenshots, setScreenshots] = useState([]);
+  console.log(screenshots);
+  const fetchGameInfo = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`
+      );
+      setGameInfo(response.data);
+      localStorage.setItem(gameId, JSON.stringify(response.data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchScreenshots = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.rawg.io/api/games/${gameId}/screenshots?key=${API_KEY}`
+      );
+      const cacheGame = JSON.parse(localStorage.getItem(gameId) || "{}");
+      const newData = {
+        ...cacheGame,
+        screenshots: response.data.results,
+      };
+      localStorage.setItem(gameId, JSON.stringify(newData));
+      setScreenshots(response.data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (gameId) {
@@ -27,33 +59,26 @@ const GameInformation: React.FC<gameInformationProps> = () => {
         }
       } else {
         console.log("JEST ZAPYTANIE");
-        axios
-          .get(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`)
-          .then((response) => {
-            setGameInfo(response.data);
-            localStorage.setItem(gameId, JSON.stringify(response.data));
-            axios
-              .get(`https://api.rawg.io/api/games/${gameId}/screenshots?key=${API_KEY}`)
-              .then((response) => {
-                const cacheGame = JSON.parse(localStorage.getItem(gameId) || "{}");
-                const newData = {
-                  ...cacheGame,
-                  screenshots: { ...response.data.results },
-                };
-                localStorage.setItem(gameId, JSON.stringify(newData));
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          })
-          .catch((error) => {
-            console.error("Błąd pobierania informacji o grze:", error);
-          });
+        fetchGameInfo();
       }
     }
   }, [gameId]);
+
+  useEffect(() => {
+    if (gameId) {
+      fetchScreenshots();
+    }
+  }, [gameId]);
   const ratingColor =
-    gameInfo?.metacritic <= 49 ? "#f00" : gameInfo?.metacritic <= 74 ? "#fc3" : "#6c3";
+    gameInfo?.metacritic <= 49
+      ? "#f00"
+      : gameInfo?.metacritic <= 74
+      ? "#fc3"
+      : "#6c3";
+  const gallery = screenshots.map((screenshot: any) => ({
+    original: screenshot.image,
+    thumbnail: screenshot.image,
+  }));
   return (
     <div className="gameDetails__fullPage">
       <Sidebar />
@@ -65,7 +90,10 @@ const GameInformation: React.FC<gameInformationProps> = () => {
             </div>
             {gameInfo.metacritic ? (
               <>
-                <div className="gameDetails__rating" style={{ backgroundColor: ratingColor }}>
+                <div
+                  className="gameDetails__rating"
+                  style={{ backgroundColor: ratingColor }}
+                >
                   {gameInfo.metacritic}
                 </div>{" "}
               </>
@@ -80,9 +108,9 @@ const GameInformation: React.FC<gameInformationProps> = () => {
               <div className="infoContainer__developer">
                 <h1>Developers</h1>
                 <p>
-                  {gameInfo.developers
-                    ? gameInfo.developers.map((developer: { name: string }) => developer.name)
-                    : ""}
+                  {gameInfo.developers &&
+                    gameInfo.developers.length > 0 &&
+                    gameInfo.developers[0].name}
                 </p>
               </div>
               <div className="infoContainer__platforms">
@@ -92,9 +120,11 @@ const GameInformation: React.FC<gameInformationProps> = () => {
               <div className="infoContainer__genre">
                 <h1>Genre</h1>
                 <div className="genre__names">
-                  <p>FPS</p>
-                  <p>RPG</p>
-                  <p>Adenture</p>
+                  {gameInfo.genres
+                    .slice(0, 3)
+                    .map((genre: { name: string }) => (
+                      <p key={genre.name}>{genre.name}</p>
+                    ))}
                 </div>
               </div>
             </div>
@@ -123,12 +153,20 @@ const GameInformation: React.FC<gameInformationProps> = () => {
             <div className="gameDetails__screenshotsTitle">
               <h1>Screenshots</h1>
             </div>
-            <div className="gameDetails__screenshotsContainer"></div>
+            <div className="gameDetails__screenshotsContainer">
+              <Carousel showThumbs={false}>
+                {gallery.map((screenshot: any) => (
+                  <div key={screenshot.id}>
+                    <img src={screenshot.original} alt="Screenshot" />
+                  </div>
+                ))}
+              </Carousel>
+            </div>
             <div className="gameDetails_descriptionTitle">
               <h1>About</h1>
             </div>
             <div className="gameDetails_description">
-              <h1>{gameInfo.description}</h1>
+              <h1>{gameInfo.description.replace(/<\/?[^>]+(>|$)/g, "")}</h1>
             </div>
           </div>
         )}
