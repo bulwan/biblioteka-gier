@@ -144,10 +144,14 @@
   height: 26px;
 }
 
+.gameCard-clickable {
+  padding-bottom: 20px;
+}
+
 .gameCard__addToCollections {
   display: flex;
   justify-content: space-around;
-  margin: 25px 15px 15px 15px;
+  margin: 5px 15px 15px 15px;
   font-size: 16px;
 }
 .gameCard__addToCollections span {
@@ -165,6 +169,12 @@
 .gameCard__addToCollections-button {
   background: #454545;
   border-radius: 8px;
+  padding: 10px;
+}
+.gameCard__addToCollections-bigButton {
+  background: #454545;
+  border-radius: 8px;
+  font-size: 1.5rem;
   padding: 10px;
 }
 .gameCard__addToCollections-content {

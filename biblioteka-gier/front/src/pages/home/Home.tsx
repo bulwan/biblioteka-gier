@@ -5,6 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../../components/Loading";
+import { API_KEY } from "../../../key.jsx";
 import { Link } from "react-router-dom";
 function Home() {
   const [gamecard, setGamecard] = useState<any>([]);
@@ -16,7 +17,7 @@ function Home() {
   const fetchData = () => {
     axios
       .get(
-        `https://api.rawg.io/api/games?key=03af44d9d3e24608b846532caa18667f&page=${currentPage}&page_size=50&metacritic=70,100`
+        `https://api.rawg.io/api/games?key=${API_KEY}&page=${currentPage}&page_size=50&metacritic=70,100`
       )
       .then((response) => {
         const newGames = gamecard;
@@ -26,10 +27,7 @@ function Home() {
         if (response.data.results.length === 0) {
           setHasMore(false);
         } else {
-          setGamecard((prevData: any) => [
-            ...prevData,
-            ...response.data.results,
-          ]);
+          setGamecard(gamecard);
           setCurrentPage(currentPage + 1);
         }
         setIsLoading(false);
@@ -49,31 +47,24 @@ function Home() {
       next={fetchData}
       hasMore={hasMore && !isLoading}
       loader={<Loading />}
-      endMessage={<p>No more data to load.</p>}
-    >
+      endMessage={<p>No more data to load.</p>}>
       <div className="home">
+        <h1 className="home__title">New Releases</h1>
         <div className="home__mainElements">
           <Sidebar />
           <div className="home__mainContainer">
             <OrderBy />
             <div className="home__gameContainer">
-              {gamecard.map((elements: any,index:number) => (
-                <Link
-				to={`/game/${elements.id}`}
-				state={{ game: elements }}
-				key={`${elements.id}-${index}`}
-				className="gameContainer__link"
-			  >
-                  <GameCard
-                     key={`gameCard-${elements.id}`}
-                    id={elements.id}
-                    image={elements.background_image}
-                    rating={elements.metacritic}
-                    title={elements.name}
-                    developers={elements.developers}
-                    platforms={elements.platforms}
-                  />
-                </Link>
+              {gamecard.map((elements: any, index: number) => (
+                <GameCard
+                  key={`gameCard-${elements.id}`}
+                  id={elements.id}
+                  image={elements.background_image}
+                  rating={elements.metacritic}
+                  title={elements.name}
+                  developers={elements.developers}
+                  platforms={elements.platforms}
+                />
               ))}
             </div>
           </div>

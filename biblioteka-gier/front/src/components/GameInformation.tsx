@@ -3,6 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "./Sidebar";
 import "../pages/gameDetails/gameDetails.css";
+import { API_KEY } from "../../key.jsx";
 type gameInformationProps = {
   id: any;
   image: string;
@@ -13,7 +14,6 @@ type gameInformationProps = {
 };
 const GameInformation: React.FC<gameInformationProps> = () => {
   const location = useLocation();
-  const game = location.state.game;
   const { id: gameId } = useParams();
   const [gameInfo, setGameInfo] = useState<any>(null);
 
@@ -28,14 +28,14 @@ const GameInformation: React.FC<gameInformationProps> = () => {
       } else {
         console.log("JEST ZAPYTANIE");
         axios
-          .get(`https://api.rawg.io/api/games/${gameId}?key=03af44d9d3e24608b846532caa18667f`)
+          .get(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`)
           .then((response) => {
             setGameInfo(response.data);
             localStorage.setItem(gameId, JSON.stringify(response.data));
             axios
-              .get(`https://api.rawg.io/api/games/${gameId}/screenshots?key=03af44d9d3e24608b846532caa18667f`)
+              .get(`https://api.rawg.io/api/games/${gameId}/screenshots?key=${API_KEY}`)
               .then((response) => {
-                const cacheGame = JSON.parse(localStorage.getItem(gameId) || '{}');
+                const cacheGame = JSON.parse(localStorage.getItem(gameId) || "{}");
                 const newData = {
                   ...cacheGame,
                   screenshots: { ...response.data.results },
@@ -53,7 +53,7 @@ const GameInformation: React.FC<gameInformationProps> = () => {
     }
   }, [gameId]);
   const ratingColor =
-    game.metacritic <= 49 ? "#f00" : game.metacritic <= 74 ? "#fc3" : "#6c3";
+    gameInfo?.metacritic <= 49 ? "#f00" : gameInfo?.metacritic <= 74 ? "#fc3" : "#6c3";
   return (
     <div className="gameDetails__fullPage">
       <Sidebar />
@@ -61,15 +61,17 @@ const GameInformation: React.FC<gameInformationProps> = () => {
         {gameInfo && (
           <div key={gameInfo.id} className="gameDetails__container">
             <div className="gameDetails__image">
-              <img src={game.background_image} alt={game.name} />
+              <img src={gameInfo.background_image} alt={gameInfo.name} />
             </div>
-            <div
-              className="gameDetails__rating"
-              style={{ backgroundColor: ratingColor }}
-            >
-              {game.metacritic}
-            </div>
-            <div className="gameDetails__title">{game.name}</div>
+            {gameInfo.metacritic ? (
+              <>
+                <div className="gameDetails__rating" style={{ backgroundColor: ratingColor }}>
+                  {gameInfo.metacritic}
+                </div>{" "}
+              </>
+            ) : null}
+
+            <div className="gameDetails__title">{gameInfo.name}</div>
             <div className="gameDetails__infoContainer">
               <div className="infoContainer__releaseDate">
                 <h1>Release date</h1>
@@ -79,9 +81,7 @@ const GameInformation: React.FC<gameInformationProps> = () => {
                 <h1>Developers</h1>
                 <p>
                   {gameInfo.developers
-                    ? gameInfo.developers.map(
-                        (developer: { name: string }) => developer.name
-                      )
+                    ? gameInfo.developers.map((developer: { name: string }) => developer.name)
                     : ""}
                 </p>
               </div>
@@ -98,47 +98,28 @@ const GameInformation: React.FC<gameInformationProps> = () => {
                 </div>
               </div>
             </div>
-            <div className="gameDetails__buttonContainer">
-              <div className="buttonContainer__completed">
-                <button>
-                  <img
-                    src="src\images\completed-icon.png"
-                    alt="completed-icon"
-                  />
-                  Completed
-                </button>
+            <div className="gameCard__addToCollections">
+              <div className="gameCard__addToCollections-dropdown">
+                <div className="gameCard__addToCollections-bigButton">
+                  Change a status <span>+</span>
+                </div>
+                <div className="gameCard__addToCollections-content">
+                  <div>Completed</div>
+                  <div>In plans</div>
+                  <div>Playing</div>
+                  <div>Abandoned</div>
+                </div>
               </div>
-              <div className="buttonContainer__playing">
-                <button>
-                  <img src="src\images\playing-icon.png" alt="playing-icon" />
-                  Playing
-                </button>
-              </div>
-              <div className="buttonContainer__inPlans">
-                <button>
-                  <img src="src\images\inPlans-icon.png" alt="inPlans-icon" />
-                  In plans
-                </button>
-              </div>
-              <div className="buttonContainer__abandoned">
-                <button>
-                  <img
-                    src="src\images\abandoned-icon.png"
-                    alt="abandoned-icon"
-                  />
-                  Abandoned
-                </button>
+              <div className="gameCard__addToCollections-dropdown">
+                <div className="gameCard__addToCollections-bigButton">
+                  Add to collections <span>+</span>
+                </div>
+                <div className="gameCard__addToCollections-content">
+                  <div className="dropdown-custom">Create collection</div>
+                </div>
               </div>
             </div>
-            <div className="gameDetails__addToLibrary">
-              <button>
-                Add to library
-                <img
-                  src="src\images\addToLibrary-icon.png"
-                  alt="abandoned-icon"
-                />
-              </button>
-            </div>
+
             <div className="gameDetails__screenshotsTitle">
               <h1>Screenshots</h1>
             </div>
