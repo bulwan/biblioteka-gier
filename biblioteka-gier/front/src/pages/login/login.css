@@ -16,15 +16,9 @@ body {
   -o-background-size: cover;
   background-position: center;
   background-size: cover;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   z-index: 1;
 }
 .login--container {
@@ -39,7 +33,6 @@ body {
 .login .inputRegister {
   width: 100%;
   color: white;
-  -webkit-transition: ease 0.1s;
   transition: ease 0.1s;
   padding: 5px 10px;
   font-size: 22px;
@@ -47,8 +40,7 @@ body {
   border: 0;
   border-bottom: 2px rgba(255, 255, 255, 0.753) solid;
   font-weight: 500;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .login .input-div {
@@ -75,25 +67,7 @@ body {
     background: pink;
   }
 }
-::-webkit-input-placeholder {
-  font-size: 22px;
-  font-weight: 100;
-  color: white;
-  opacity: 0.8;
-}
 ::-moz-placeholder {
-  font-size: 22px;
-  font-weight: 100;
-  color: white;
-  opacity: 0.8;
-}
-:-ms-input-placeholder {
-  font-size: 22px;
-  font-weight: 100;
-  color: white;
-  opacity: 0.8;
-}
-::-ms-input-placeholder {
   font-size: 22px;
   font-weight: 100;
   color: white;
@@ -143,4 +117,4 @@ body {
 
 .buttonForgott {
   text-decoration: underline;
-}
+}/*# sourceMappingURL=login.css.map */

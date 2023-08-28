@@ -6,6 +6,8 @@ import "../pages/gameDetails/gameDetails.css";
 import { API_KEY } from "../../key.jsx";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import StatusDropdown from "./StatusDropdown.js";
+import CollectionList from "./CollectionList.js";
 type gameInformationProps = {
   id: any;
   image: string;
@@ -19,12 +21,11 @@ const GameInformation: React.FC<gameInformationProps> = () => {
   const gameId: string = String(id);
   const [gameInfo, setGameInfo] = useState<any>(null);
   const [screenshots, setScreenshots] = useState([]);
+  const [collections, setCollections] = useState([]);
   console.log(screenshots);
   const fetchGameInfo = async () => {
     try {
-      const response = await axios.get(
-        `https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`
-      );
+      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`);
       setGameInfo(response.data);
       localStorage.setItem(gameId, JSON.stringify(response.data));
     } catch (error) {
@@ -65,16 +66,13 @@ const GameInformation: React.FC<gameInformationProps> = () => {
   }, [gameId]);
 
   useEffect(() => {
+    setCollections(JSON.parse(sessionStorage.getItem("collections")));
     if (gameId) {
       fetchScreenshots();
     }
   }, [gameId]);
   const ratingColor =
-    gameInfo?.metacritic <= 49
-      ? "#f00"
-      : gameInfo?.metacritic <= 74
-      ? "#fc3"
-      : "#6c3";
+    gameInfo?.metacritic <= 49 ? "#f00" : gameInfo?.metacritic <= 74 ? "#fc3" : "#6c3";
   const gallery = screenshots.map((screenshot: any) => ({
     original: screenshot.image,
     thumbnail: screenshot.image,
@@ -90,15 +88,11 @@ const GameInformation: React.FC<gameInformationProps> = () => {
             </div>
             {gameInfo.metacritic ? (
               <>
-                <div
-                  className="gameDetails__rating"
-                  style={{ backgroundColor: ratingColor }}
-                >
+                <div className="gameDetails__rating" style={{ backgroundColor: ratingColor }}>
                   {gameInfo.metacritic}
-                </div>{" "}
+                </div>
               </>
             ) : null}
-
             <div className="gameDetails__title">{gameInfo.name}</div>
             <div className="gameDetails__infoContainer">
               <div className="infoContainer__releaseDate">
@@ -120,36 +114,32 @@ const GameInformation: React.FC<gameInformationProps> = () => {
               <div className="infoContainer__genre">
                 <h1>Genre</h1>
                 <div className="genre__names">
-                  {gameInfo.genres
-                    .slice(0, 3)
-                    .map((genre: { name: string }) => (
-                      <p key={genre.name}>{genre.name}</p>
-                    ))}
-                </div>
-              </div>
-            </div>
-            <div className="gameCard__addToCollections">
-              <div className="gameCard__addToCollections-dropdown">
-                <div className="gameCard__addToCollections-bigButton">
-                  Change a status <span>+</span>
-                </div>
-                <div className="gameCard__addToCollections-content">
-                  <div>Completed</div>
-                  <div>In plans</div>
-                  <div>Playing</div>
-                  <div>Abandoned</div>
-                </div>
-              </div>
-              <div className="gameCard__addToCollections-dropdown">
-                <div className="gameCard__addToCollections-bigButton">
-                  Add to collections <span>+</span>
-                </div>
-                <div className="gameCard__addToCollections-content">
-                  <div className="dropdown-custom">Create collection</div>
+                  {gameInfo.genres.slice(0, 3).map((genre: { name: string }) => (
+                    <p key={genre.name}>{genre.name}</p>
+                  ))}
                 </div>
               </div>
             </div>
 
+            <div className="gameCard__addToCollections">
+              <div className="gameCard__addToCollections-dropdown">
+                Manage <b>{gameInfo.name}'s</b> status:
+                <br />
+                <br />
+                <br />
+                <StatusDropdown id={id} />
+              </div>
+              <div className="gameCard__addToCollections-dropdown">
+                Manage <b>{gameInfo.name}</b> in your collections:
+                <br />
+                <br />
+                {collections.map((item) => (
+                  <div key={item.id}>
+                    <CollectionList name={item.name} key={item.id} id={id} collection={item} />
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="gameDetails__screenshotsTitle">
               <h1>Screenshots</h1>
             </div>

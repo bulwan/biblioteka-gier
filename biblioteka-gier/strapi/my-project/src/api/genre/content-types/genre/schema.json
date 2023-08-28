@@ -13,12 +13,6 @@
   "attributes": {
     "name": {
       "type": "string"
-    },
-    "games": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::game.game",
-      "mappedBy": "genres"
     }
   }
 }
