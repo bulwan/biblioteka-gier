@@ -10,8 +10,8 @@ import GameInformation from "./GameInformation";
 import NavbarGames from "./NavbarGames";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { API_KEY } from "../.././key.tsx";
-import Loading from "../components/Loading.tsx"
+import { API_KEY } from "../../key.tsx";
+import Loading from "../components/Loading.tsx";
 import StatusDetails from "./StatusDetials";
 function Navbar() {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ function Navbar() {
     localStorage.removeItem("token");
     navigate("/");
     window.location.reload();
+    sessionStorage.clear();
   };
   const [input, updateInput] = useState("");
   const [games, setGames] = useState<any[]>([]);
@@ -26,13 +27,10 @@ function Navbar() {
   const [isFetching, setIsFetching] = useState(false);
   let navbarRef: any = useRef<any>(null);
   const fetchGames = async () => {
-    if (input.length >= 3) {
       setIsFetching(true);
       try {
         const response = await axios.get(
-          `https://api.rawg.io/api/games?key=${API_KEY}&search=${encodeURIComponent(
-            input
-          )}`
+          `https://api.rawg.io/api/games?key=${API_KEY}&search=${encodeURIComponent(input)}`
         );
         setGames(response.data.results.slice(0, 6));
       } catch (error) {
@@ -40,11 +38,7 @@ function Navbar() {
       } finally {
         setIsFetching(false);
       }
-    } else {
-      setGames([]);
-    }
   };
-
   useEffect(() => {
     if (input.length >= 3) {
       const timeout = setTimeout(fetchGames, 500);
@@ -64,6 +58,32 @@ function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    axios.get("http://localhost:1337/api/users/me?populate=*").then((response) => {
+      sessionStorage.setItem("me", JSON.stringify(response.data));
+      const completedCache = [];
+      const inPlansCache = [];
+      const abandonedCache = [];
+      const playingCache = [];
+      for (const game of response.data.completed) {
+        completedCache.push({ gameID: game.gameID, id: game.id });
+      }
+      for (const game of response.data.inPlans) {
+        inPlansCache.push({ gameID: game.gameID, id: game.id });
+      }
+      for (const game of response.data.abandoned) {
+        abandonedCache.push({ gameID: game.gameID, id: game.id });
+      }
+      for (const game of response.data.playing) {
+        playingCache.push({ gameID: game.gameID, id: game.id });
+      }
+      sessionStorage.setItem("completed", JSON.stringify(completedCache));
+      sessionStorage.setItem("inPlans", JSON.stringify(inPlansCache));
+      sessionStorage.setItem("abandoned", JSON.stringify(abandonedCache));
+      sessionStorage.setItem("playing", JSON.stringify(playingCache));
+    });
+  }, []);
+
   const changeInput = (event: any) => {
     updateInput(event.target.value);
   };
@@ -80,36 +100,34 @@ function Navbar() {
           className="navbar__searchBar"
           onClick={() => {
             setOpen(!open);
-          }}
-        >
+          }}>
           <input
             type="search"
             placeholder="Search Your Specific Game..."
-            onChange={changeInput}
-          ></input>
+            onChange={changeInput}></input>
         </div>
-        <div
-          className={`navbar_results ${open ? "active" : "inactive"}`}
-          ref={navbarRef}
-        >
+        <div className={`navbar_results ${open ? "active" : "inactive"}`} ref={navbarRef}>
           {isFetching && <p>Loading...</p>}
-          {games.length > 0 && games.map((game) => (
-            <Link
-              to={`/game/${game.id}`}
-              key={game.id}
-              state={{ game: game }}
-              className="results__link"
-              onClick={() => setOpen(false)}
-            >
-              <NavbarGames
-                id={game.id}
-                title={game.name}
-                image={game.background_image}
-                rating={game.metacritic}
-                platforms={game.platforms && game.platforms.map((platform: any) => platform.platform.name).join(", ")}
-              />
-            </Link>
-          ))}
+          {games.length > 0 &&
+            games.map((game) => (
+              <Link
+                to={`/game/${game.id}`}
+                key={game.id}
+                state={{ game: game }}
+                className="results__link"
+                onClick={() => setOpen(false)}>
+                <NavbarGames
+                  id={game.id}
+                  title={game.name}
+                  image={game.background_image}
+                  rating={game.metacritic || "?"}
+                  platforms={
+                    game.platforms &&
+                    game.platforms.map((platform: any) => platform.platform.name).join(", ")
+                  }
+                />
+              </Link>
+            ))}
         </div>
         <div className="navbar__buttons">
           {!localStorage.getItem("token") ? (

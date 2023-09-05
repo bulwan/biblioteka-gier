@@ -1,8 +1,8 @@
 import "./gameDetails.scss";
 import { useParams } from 'react-router-dom';
-import example from "../home/example"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_KEY } from "../../../key.tsx";
 import GameInformation from "../../components/GameInformation";
 function GameDetails() {
   const params = useParams();
@@ -11,7 +11,7 @@ function GameDetails() {
   const [game,setGame] = useState<any>([])
   const [gry, teGry] = useState<any>([]);
   const getData = async () => {axios
-		.get("http://localhost:1337/api/games")
+		.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
 		.then(({ data }) => {
 		setGame(data.data);
 		})
@@ -33,7 +33,6 @@ function GameDetails() {
   return (
     <div className="gameDetails">
       <div className="gameDetails__mainElements">
-        <SideBar/>
        <GameInformation
        id = {gry.id}
        image = {gry.image}

@@ -63,55 +63,127 @@
 		height: 60px;
 		padding-bottom: 30px;
 		border: none;
-		background-image: url("../images/arrow-icon.png");
+		background-image: url("../images/expandMore_icon.svg");
 		background-size: 36px 36px;
 		background-repeat: no-repeat;
 		background-position: center top 30px;
 	}
 	.sidebar__bestOfAllTime {
 		@include sidebar__buttons;
-		background-image: url("../images/bestOf-icon.png");
+		background-image: url("../images/bestOf-icon.svg");
 	}
 	.sidebar__popular2023 {
 		@include sidebar__buttons;
-		background-image: url("../images/popular-icon.png");
+		background-image: url("../images/popular-icon.svg");
 	}
 	.sidebar__last30Days {
 		@include sidebar__buttons;
-		background-image: url("../images/last30days-icon.png");
+		background-image: url("../images/last30days-icon.svg");
 	}
 	.sidebar__comingSoon {
 		@include sidebar__buttons;
-		background-image: url("../images/comingSoon-icon.png");
+		background-image: url("../images/comingSoon-icon.svg");
 	}
 	.sidebar__windows {
 		@include sidebar__buttons;
-		background-image: url("../images/windows-icon.png");
+		background-image: url("../images/windows-icon.svg");
+	}
+	.sidebar__playstation5 {
+		@include sidebar__buttons;
+		background-size: 64px 64px;
+		background-position:40px -5px;
+		background-image: url("../images/playstation5_icon.svg");
+
+	}
+	.sidebar__xboxSeries {
+		@include sidebar__buttons;
+		background-size: 64px 64px;
+		background-position:38px -5px;
+		background-image: url("../images/xboxSeries-icon.svg");
+	}
+	.sidebar__xboxOne {
+		@include sidebar__buttons;
+		background-image: url("../images/xboxOne-icon.svg");
+	}
+	.sidebar__playstation4 {
+		@include sidebar__buttons;
+		background-size: 80px 80px;
+		background-position:28px -10px;
+		background-image: url("../images/playstation4_icon.svg");	
+	}
+	.sidebar__playstation3 {
+		@include sidebar__buttons;
+		background-size: 72px 72px;
+		background-position:32px -8px;
+		background-image: url("../images/playstation3_icon.svg");	
+	}
+	.sidebar__playstation2 {
+		@include sidebar__buttons;
+		background-size: 72px 72px;
+		background-position:32px -8px;
+		background-image: url("../images/playstation2_icon.svg");	
 	}
 	.sidebar__playstation {
 		@include sidebar__buttons;
-		background-image: url("../images/playstation-icon.png");
+		background-position:50px 8px;
+		background-image: url("../images/playstation_icon.svg");	
+	}
+	.sidebar__xbox360 {
+		@include sidebar__buttons;
+		background-size: 72px 72px;
+		background-position:34px 0px;
+		background-image: url("../images/xbox360_icon.svg");
 	}
 	.sidebar__xbox {
 		@include sidebar__buttons;
-		background-image: url("../images/xbox-icon.png");
+		background-size: 42px 42px;
+		background-position:48px 3px;
+		background-image: url("../images/xbox_icon.svg");
 	}
 	.sidebar__showAllPlatforms {
 		@include sidebar_showAll;
+		transition: background-color 1.3s ease-in-out;
 	}
 	.sidebar__rpg {
 		@include sidebar__buttons;
-		background-image: url("../images/rpg-icon.png");
+		background-image: url("../images/rpg-icon.svg");
 	}
 	.sidebar__fps {
 		@include sidebar__buttons;
-		background-image: url("../images/fps-icon.png");
+		background-position:55px 5px;
+		background-image: url("../images/fps-icon.svg");
 	}
 	.sidebar__adventure {
 		@include sidebar__buttons;
-		background-image: url("../images/adventure-icon.png");
+		background-image: url("../images/adventure-icon.svg");
 	}
+	.sidebar__action {
+		@include sidebar__buttons;
+		background-image: url("../images/action-icon.svg");
+	}
+	.sidebar__strategy {
+		@include sidebar__buttons;	
+		background-image: url("../images/strategy-icon.svg");
+	}
+	.sidebar__indie {
+		@include sidebar__buttons;
+		background-image: url("../images/indie-icon.svg");
+	}
+	.sidebar__puzzle {
+		@include sidebar__buttons;
+		background-image: url("../images/puzzle-icon.svg");
+	}
+	.sidebar__racing {
+		@include sidebar__buttons;
+		background-image: url("../images/racing-icon.svg");
+	}
+	.sidebar__sports {
+		@include sidebar__buttons;
+		background-image: url("../images/sports-icon.svg");
+	}
+
 	.sidebar__showAllGenres {
+		margin:0 0 5% 0;
 		@include sidebar_showAll;
 	}
 }

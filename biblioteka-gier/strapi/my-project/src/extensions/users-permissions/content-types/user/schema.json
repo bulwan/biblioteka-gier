@@ -98,17 +98,17 @@
       "relation": "oneToMany",
       "target": "api::game.game"
     },
+    "abandoned": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::game.game"
+    },
     "inPlans": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::game.game"
     },
     "playing": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::game.game"
-    },
-    "abandoneds": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::game.game"
