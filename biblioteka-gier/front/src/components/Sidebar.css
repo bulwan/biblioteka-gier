@@ -1,12 +1,7 @@
 .sidebar {
   color: #ffffff;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   margin: 17px 20px;
 }
 .sidebar .sidebar__titles {
@@ -29,16 +24,13 @@
   margin: 0 auto;
   background-color: #1f1e1e;
   border-radius: 25px;
-  -webkit-transition: 0.6s;
   transition: 0.6s;
 }
 .sidebar .sidebar__allGames:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__bestOfAllTime {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -59,12 +51,10 @@
   background-image: url("../images/bestOf-icon.svg");
 }
 .sidebar .sidebar__bestOfAllTime:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__popular2023 {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -85,12 +75,10 @@
   background-image: url("../images/popular-icon.svg");
 }
 .sidebar .sidebar__popular2023:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__last30Days {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -111,12 +99,10 @@
   background-image: url("../images/last30days-icon.svg");
 }
 .sidebar .sidebar__last30Days:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__comingSoon {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -137,12 +123,10 @@
   background-image: url("../images/comingSoon-icon.svg");
 }
 .sidebar .sidebar__comingSoon:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__windows {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -163,12 +147,10 @@
   background-image: url("../images/windows-icon.svg");
 }
 .sidebar .sidebar__windows:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__playstation5 {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -191,12 +173,10 @@
   background-image: url("../images/playstation5_icon.svg");
 }
 .sidebar .sidebar__playstation5:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__xboxSeries {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -219,12 +199,10 @@
   background-image: url("../images/xboxSeries-icon.svg");
 }
 .sidebar .sidebar__xboxSeries:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__xboxOne {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -245,12 +223,10 @@
   background-image: url("../images/xboxOne-icon.svg");
 }
 .sidebar .sidebar__xboxOne:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__playstation4 {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -273,12 +249,10 @@
   background-image: url("../images/playstation4_icon.svg");
 }
 .sidebar .sidebar__playstation4:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__playstation3 {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -301,12 +275,10 @@
   background-image: url("../images/playstation3_icon.svg");
 }
 .sidebar .sidebar__playstation3:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__playstation2 {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -329,12 +301,10 @@
   background-image: url("../images/playstation2_icon.svg");
 }
 .sidebar .sidebar__playstation2:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__playstation {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -356,12 +326,10 @@
   background-image: url("../images/playstation_icon.svg");
 }
 .sidebar .sidebar__playstation:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__xbox360 {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -384,12 +352,10 @@
   background-image: url("../images/xbox360_icon.svg");
 }
 .sidebar .sidebar__xbox360:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__xbox {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -412,7 +378,6 @@
   background-image: url("../images/xbox_icon.svg");
 }
 .sidebar .sidebar__xbox:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
@@ -431,11 +396,9 @@
   background-size: 36px 36px;
   background-repeat: no-repeat;
   background-position: center top 30px;
-  -webkit-transition: background-color 1.3s ease-in-out;
   transition: background-color 1.3s ease-in-out;
 }
 .sidebar .sidebar__rpg {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -456,12 +419,10 @@
   background-image: url("../images/rpg-icon.svg");
 }
 .sidebar .sidebar__rpg:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__fps {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -483,12 +444,10 @@
   background-image: url("../images/fps-icon.svg");
 }
 .sidebar .sidebar__fps:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__adventure {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -509,12 +468,10 @@
   background-image: url("../images/adventure-icon.svg");
 }
 .sidebar .sidebar__adventure:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__action {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -535,12 +492,10 @@
   background-image: url("../images/action-icon.svg");
 }
 .sidebar .sidebar__action:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__strategy {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -561,12 +516,10 @@
   background-image: url("../images/strategy-icon.svg");
 }
 .sidebar .sidebar__strategy:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__indie {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -587,12 +540,10 @@
   background-image: url("../images/indie-icon.svg");
 }
 .sidebar .sidebar__indie:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__puzzle {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -613,12 +564,10 @@
   background-image: url("../images/puzzle-icon.svg");
 }
 .sidebar .sidebar__puzzle:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__racing {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -639,12 +588,10 @@
   background-image: url("../images/racing-icon.svg");
 }
 .sidebar .sidebar__racing:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
 .sidebar .sidebar__sports {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   color: #ffffff;
   font-weight: 500;
@@ -665,7 +612,6 @@
   background-image: url("../images/sports-icon.svg");
 }
 .sidebar .sidebar__sports:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #080808;
 }
@@ -685,4 +631,12 @@
   background-size: 36px 36px;
   background-repeat: no-repeat;
   background-position: center top 30px;
+} /*# sourceMappingURL=Sidebar.css.map */
+.sidebar_rankings {
+  background: #111;
+  border-radius: 15px;
+  color: white;
+}
+.sidebar_rankings a {
+  color: white;
 }

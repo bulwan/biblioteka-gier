@@ -1,13 +1,8 @@
 .navbar {
   max-width: 1280px;
   height: 67px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   background-color: #262626;
   border-radius: 0 0 15px 15px;
   margin: 0 auto;
@@ -17,7 +12,6 @@
   font-weight: 800;
   font-style: italic;
   color: rgba(255, 255, 255, 0.616);
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   margin: auto 2%;
 }
@@ -25,18 +19,14 @@
   cursor: pointer;
   text-decoration: none;
   color: rgb(233, 233, 233);
-  -webkit-transition: 0.2s;
   transition: 0.2s;
   font-weight: 700;
 }
 .navbar .navbar__title .title__navlink:hover {
-  -webkit-transition: 0.2s;
   transition: 0.2s;
   color: rgb(255, 255, 255);
 }
 .navbar .navbar__searchBar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin: auto 2%;
   width: 70%;
@@ -57,43 +47,19 @@
   height: 30px;
   cursor: pointer;
   font-family: "Montserrat", sans-serif;
-  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
 .navbar .navbar__searchBar input:focus {
-  -webkit-transition: 0.2s;
   transition: 0.2s;
   text-align: center;
   background-color: #ddd;
   outline: none;
 }
 .navbar .navbar__searchBar input:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: #dddddd;
 }
-.navbar .navbar__searchBar input::-webkit-input-placeholder {
-  text-align: center;
-  font-weight: bold;
-  color: #363636;
-  opacity: 70%;
-  font-size: 16px;
-}
 .navbar .navbar__searchBar input::-moz-placeholder {
-  text-align: center;
-  font-weight: bold;
-  color: #363636;
-  opacity: 70%;
-  font-size: 16px;
-}
-.navbar .navbar__searchBar input:-ms-input-placeholder {
-  text-align: center;
-  font-weight: bold;
-  color: #363636;
-  opacity: 70%;
-  font-size: 16px;
-}
-.navbar .navbar__searchBar input::-ms-input-placeholder {
   text-align: center;
   font-weight: bold;
   color: #363636;
@@ -120,23 +86,17 @@
   left: 0;
   width: 100%;
   background-color: rgb(0, 0, 0);
-  -webkit-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   overflow: hidden;
-  -webkit-transition: 0.6s;
   transition: 0.6s;
 }
 .navbar .navbar_results.active .results__link {
   text-decoration: none;
 }
 .navbar .navbar_results.active .gameList__gameCard {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding: 10px;
   color: rgb(250, 250, 250);
   border-bottom: 2px solid #ccc;
@@ -183,8 +143,6 @@
   height: 80px;
 }
 .navbar .navbar_results.inactive {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   position: absolute;
   opacity: 0;
@@ -193,23 +151,17 @@
   left: 0;
   width: 100%;
   background-color: rgb(0, 0, 0);
-  -webkit-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   overflow: hidden;
-  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 .navbar .navbar_results.inactive .results__link {
   text-decoration: none;
 }
 .navbar .navbar_results.inactive .gameList__gameCard {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding: 10px;
   color: rgb(250, 250, 250);
   width: 1300px;
@@ -239,8 +191,6 @@
      object-fit: contain;
 }
 .navbar .navbar__login {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 27px;
@@ -254,8 +204,6 @@
   cursor: pointer;
 }
 .navbar .navbar__register {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 27px;
@@ -269,8 +217,6 @@
   cursor: pointer;
 }
 .navbar .navbar__buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 15%;
-}
+}/*# sourceMappingURL=Navbar.css.map */

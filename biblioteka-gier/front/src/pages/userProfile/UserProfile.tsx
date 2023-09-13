@@ -4,8 +4,12 @@ import ProfileHeader from "../../components/ProfileHeader";
 import { useState, useEffect } from "react";
 import "./userProfile.css";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 function UserProfile() {
   const url = "http://localhost:1337";
+  const params = useParams();
+  const [isMe, setIsMe] = useState(params.id === undefined ? `me` : params.id);
+  const [userID, setUserID] = useState();
   const [profilePicture, setProfilePicture] = useState("");
   const [backgroundPicture, setBackgroundPicture] = useState("");
   const [username, setUsername] = useState("");
@@ -17,9 +21,10 @@ function UserProfile() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:1337/api/users/me?populate=*")
+      .get(`http://localhost:1337/api/users/${isMe}?populate=*`)
       .then((response) => {
-        sessionStorage.setItem("me", JSON.stringify(response.data));
+        setUserID(response.data.id);
+        if (isMe === `me`) sessionStorage.setItem("me", JSON.stringify(response.data));
         response.data.profilePicture === null
           ? setProfilePicture("../../src/images/defaultProfilePicture.jpg")
           : setProfilePicture(url + response.data.profilePicture.url);
@@ -49,18 +54,21 @@ function UserProfile() {
         for (const game of response.data.playing) {
           playingCache.push({ gameID: game.gameID, id: game.id });
         }
-        sessionStorage.setItem("completed", JSON.stringify(completedCache));
-        sessionStorage.setItem("inPlans", JSON.stringify(inPlansCache));
-        sessionStorage.setItem("abandoned", JSON.stringify(abandonedCache));
-        sessionStorage.setItem("playing", JSON.stringify(playingCache));
+        if (isMe === `me`) {
+          sessionStorage.setItem("completed", JSON.stringify(completedCache));
+          sessionStorage.setItem("inPlans", JSON.stringify(inPlansCache));
+          sessionStorage.setItem("abandoned", JSON.stringify(abandonedCache));
+          sessionStorage.setItem("playing", JSON.stringify(playingCache));
+        }
+
         axios
-          .get(`http://localhost:1337/api/users/me?populate[collections][populate]=*`)
+          .get(`http://localhost:1337/api/users/${isMe}?populate[collections][populate]=*`)
           .then((response) => {
             const collections = [];
             for (const collection of response.data.collections) {
               collections.push(collection);
             }
-            sessionStorage.setItem("collections", JSON.stringify(collections));
+            if (isMe === `me`) sessionStorage.setItem("collections", JSON.stringify(collections));
           })
           .catch((error) => {
             console.log(error);
@@ -70,7 +78,7 @@ function UserProfile() {
         console.log("An error occurred:", error.response);
       });
     axios
-      .get("http://localhost:1337/api/users/me?populate[collections][populate]=*")
+      .get(`http://localhost:1337/api/users/${isMe}?populate[collections][populate]=*`)
       .then((response) => {
         const newCollections = [];
         for (const collection of response.data.collections) {
@@ -97,7 +105,6 @@ function UserProfile() {
         console.log("An error occurred:", error.response);
       });
   }, []);
-  // console.log(completed);
   return (
     <div className="userProfile">
       <ProfileHeader src={backgroundPicture} avatarSRC={profilePicture} username={username} />
@@ -107,30 +114,34 @@ function UserProfile() {
         <CategoryCard
           title="Completed"
           slug="completed"
-          src="completed.png"
+          src="completed-icon.svg"
           value={completed !== undefined ? completed.length : 0}
           owner={username}
+          userID={userID}
         />
         <CategoryCard
           title="In plans"
           slug="inPlans"
-          src="in_plans.png"
+          src="inPlans-icon.svg"
           value={inPlans !== undefined ? inPlans.length : 0}
           owner={username}
+          userID={userID}
         />
         <CategoryCard
           title="Abandoned"
           slug="abandoned"
-          src="abandoned.png"
+          src="abandoned-icon.svg"
           value={abandoned !== undefined ? abandoned.length : 0}
           owner={username}
+          userID={userID}
         />
         <CategoryCard
           title="Playing"
           slug="playing"
-          src="playing.png"
+          src="playing-icon.svg"
           value={playing !== undefined ? playing.length : 0}
           owner={username}
+          userID={userID}
         />
       </div>
       <p className="userProfile--collections">Collections</p>

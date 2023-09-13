@@ -1,25 +1,15 @@
 .home {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   margin: 0 auto;
 }
 .home__mainElements {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 100%;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
 .home__title {
   width: 100%;
@@ -35,23 +25,21 @@
 .home__content {
   background: #222;
   border-radius: 15px;
-  margin: auto;
+  text-align: center;
 }
 .home__subtitle {
   margin-bottom: 40px;
 }
+.home__subtitle h2 {
+  text-align: left;
+  margin: 0 0 0 2%;
+}
 .home__orderBy {
   font-weight: 500;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
   width: 185px;
   height: 35px;
   font-size: 24px;
@@ -63,11 +51,9 @@
   background-size: 18px 18px;
   background-repeat: no-repeat;
   background-position: center right 1px;
-  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 .home__orderBy .orderContainer {
-  -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease;
 }
 .home__orderBy .orderContainer .open {
@@ -84,8 +70,7 @@
   background-color: #1b1a1a;
   color: black;
   border: 1px solid #ccc;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
   z-index: 1;
 }
@@ -113,53 +98,35 @@
 
 .home__gameContainer {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 .home__gameContainer .gameContainer__link {
   text-decoration: none;
 }
 
 .gameCard {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin: 3px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   margin-bottom: 1.5rem;
   color: white;
   background-color: #1b1a1a;
   width: 330px;
   min-height: 330px;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+  justify-content: space-between;
+  align-items: stretch;
   border-radius: 15px;
   cursor: pointer;
-  -webkit-transition: 0.5s ease;
   transition: 0.5s ease;
 }
 .gameCard .gameCard__id {
   display: hidden;
 }
 .gameCard:hover {
-  -webkit-transform: translateY(-5px);
-          transform: translateY(-5px);
+  transform: translateY(-5px);
   background-color: #222;
 }
 .gameCard .gameCard__image {
@@ -192,26 +159,17 @@
 .gameCard .gameCard__title .title__navlink {
   text-decoration: none;
   color: rgb(255, 255, 255);
-  -webkit-transition: 0.6s;
   transition: 0.6s;
 }
 .gameCard .gameCard__title .title__navlink:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   font-size: 23px;
 }
 .gameCard .gameCard__platforms {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  justify-content: space-evenly;
+  flex-direction: row;
   margin: 0 auto;
 }
 .gameCard .gameCard__platforms img {
@@ -224,11 +182,8 @@
 }
 
 .gameCard__addToCollections {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   margin: 5px 15px 15px 15px;
   font-size: 16px;
 }
@@ -249,15 +204,9 @@
   border-radius: 8px;
   padding: 10px;
   height: 40px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 .gameCard__addToCollections-bigButton {
   background: #454545;
@@ -281,19 +230,16 @@
 
 .gameCard__addToCollections-content div:hover {
   background: #555;
-  -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
 }
 
 .gameCard__addToCollections-dropdown:hover .gameCard__addToCollections-content {
   display: block;
-  -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
 }
 
 .gameCard__addToCollections-dropdown:hover .gameCard__addToCollections-button {
   background: #777;
-  -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
 }
 
@@ -317,28 +263,22 @@
   border-radius: 50%;
   border: 6px solid #fff;
   border-color: #fff transparent #fff transparent;
-  -webkit-animation: loading__container 1s linear infinite;
-          animation: loading__container 1s linear infinite;
-}
-
-@-webkit-keyframes loading__container {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+  animation: loading__container 1s linear infinite;
 }
 
 @keyframes loading__container {
   0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
+.deleteFromCollection {
+  margin: 0 0 0 2%;
+  width: 13%;
+  background-color: rgb(187, 28, 28);
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}/*# sourceMappingURL=Home.css.map */

@@ -1,0 +1,44 @@
+.ranking {
+  background: #343434;
+  width: 80%;
+  margin: auto;
+  .ranking-table {
+    margin: 1px;
+    margin-bottom: 50px;
+    border: #222 solid 2px;
+    border-radius: 5px;
+  }
+  &-record {
+    padding: 2px 0;
+  }
+  a {
+    display: flex;
+    text-decoration: none;
+  }
+  &-title {
+    margin: 0;
+    padding: 5px 0;
+  }
+}
+.record {
+  background: #383838;
+  font-weight: 400;
+  color: white;
+  font-size: 1.3rem;
+}
+.record-username {
+  width: 50%;
+}
+.record-number {
+  width: 12.5%;
+}
+.ranking-header {
+  font-size: 1.3rem;
+  background: #303030;
+  font-weight: 600;
+  padding: 5px 0;
+  width: 100%;
+  &-first {
+    width: 50%;
+  }
+}

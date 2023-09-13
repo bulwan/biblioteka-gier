@@ -12,16 +12,17 @@ function CollectionDetail() {
   const [gameList, setGameList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [collectionName, setCollectionName] = useState("");
+  const [owner, setOwner] = useState("");
   useEffect(() => {
     axios
-      .get(`http://localhost:1337/api/collections/${params.id}?populate[games][populate]=*`)
+      .get(`http://localhost:1337/api/collections/${params.id}?populate=user,games`)
       .then(async (response) => {
+        setOwner(response.data.data.attributes.user.data.attributes.username);
         setCollectionName(response.data.data.attributes.name);
         const gameToFetch = [];
         for (const game of response.data.data.attributes.games.data) {
           gameToFetch.push(game.attributes.gameID);
         }
-        console.log(gameToFetch);
 
         const gamePromises = gameToFetch.map(async (game) => {
           if (JSON.parse(localStorage.getItem(game))) {
@@ -46,7 +47,7 @@ function CollectionDetail() {
   const deleteCollection = () => {
     axios
       .delete(`http://localhost:1337/api/collections/${params.id}`)
-      .then((response) => {
+      .then(() => {
         navigate("/me");
       })
       .catch((error) => console.log(error));
@@ -55,11 +56,17 @@ function CollectionDetail() {
   return (
     <>
       <div className="home__content">
-        <div className="home__title">{collectionName}</div>
-        <div className="home__subtitle">Games in collection: {gameList?.length}</div>
-        <div className="button button__delete" onClick={() => deleteCollection()}>
-          Delete collection
+        <div className="home__title">
+          <h1>{collectionName}</h1>
         </div>
+        <div className="home__subtitle">
+          <h2>Games in collection: {gameList?.length}</h2>
+        </div>
+        {owner === JSON.parse(sessionStorage.getItem("me")).username ? (
+          <div className="deleteFromCollection" onClick={() => deleteCollection()}>
+            Delete collection
+          </div>
+        ) : null}
       </div>
 
       <div className="home__gameContainer">

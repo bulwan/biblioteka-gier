@@ -13,6 +13,7 @@ import axios from "axios";
 import { API_KEY } from "../../key.tsx";
 import Loading from "../components/Loading.tsx";
 import StatusDetails from "./StatusDetials";
+import Ranking from "./Ranking.tsx";
 function Navbar() {
   const navigate = useNavigate();
   const logout = () => {
@@ -27,17 +28,17 @@ function Navbar() {
   const [isFetching, setIsFetching] = useState(false);
   let navbarRef: any = useRef<any>(null);
   const fetchGames = async () => {
-      setIsFetching(true);
-      try {
-        const response = await axios.get(
-          `https://api.rawg.io/api/games?key=${API_KEY}&search=${encodeURIComponent(input)}`
-        );
-        setGames(response.data.results.slice(0, 6));
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsFetching(false);
-      }
+    setIsFetching(true);
+    try {
+      const response = await axios.get(
+        `https://api.rawg.io/api/games?key=${API_KEY}&search=${encodeURIComponent(input)}`
+      );
+      setGames(response.data.results.slice(0, 6));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsFetching(false);
+    }
   };
   useEffect(() => {
     if (input.length >= 3) {
@@ -158,7 +159,9 @@ function Navbar() {
         <Route path="me" element={<UserProfile />} />
         <Route path="/customCollection/:id" element={<CollectionDetail />} />
         <Route path="/game/:id" element={<GameInformation />} />
-        <Route path="/collection/:username/:name" element={<StatusDetails />} />
+        <Route path="/collection/:username/:userID/:name" element={<StatusDetails />} />
+        <Route path="/users/:id" element={<UserProfile />} key={window.location.pathname} />
+        <Route path="/ranking" element={<Ranking />} />
       </Routes>
     </>
   );

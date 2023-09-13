@@ -1,42 +1,25 @@
 .gameDetails__fullPage {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin-top: 58px;
 }
 
 .gameDetails {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   height: 100%;
   width: 100%;
 }
 .gameDetails .gameDetails__mainElements {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 100%;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
 .gameDetails .gameDetails__container {
   width: 100%;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   background-color: #1b1a1a;
   border-radius: 20px;
   margin-top: 10px;
@@ -80,19 +63,11 @@
 .gameDetails .gameDetails__container .gameDetails__infoContainer {
   width: 100%;
   height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   margin: 2% auto;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 .gameDetails .gameDetails__container .gameDetails__infoContainer .infoContainer__releaseDate h1 {
   text-align: center;
@@ -118,22 +93,15 @@
 }
 .gameDetails .gameDetails__container .gameDetails__infoContainer .infoContainer__developer p {
   cursor: pointer;
-  -webkit-transition: 0.6s;
   transition: 0.6s;
 }
 .gameDetails .gameDetails__container .gameDetails__infoContainer .infoContainer__developer p:hover {
   color: #ffffff;
-  -webkit-transition: 0.6s;
   transition: 0.6s;
 }
 .gameDetails .gameDetails__container .gameDetails__infoContainer .infoContainer__platforms .platforms__name {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 .gameDetails .gameDetails__container .gameDetails__infoContainer .infoContainer__platforms .platforms__name p {
   margin: 4% auto;
@@ -152,15 +120,9 @@
   font-size: 22px;
 }
 .gameDetails .gameDetails__container .gameDetails__infoContainer .infoContainer__platforms .platforms__images {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-around;
 }
 .gameDetails .gameDetails__container .gameDetails__infoContainer .infoContainer__genre {
   width: auto;
@@ -177,39 +139,27 @@
   font-size: 22px;
 }
 .gameDetails .gameDetails__container .gameDetails__infoContainer .infoContainer__genre .genre__names {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 .gameDetails .gameDetails__container .gameDetails__infoContainer .infoContainer__genre p {
   margin: 0 auto 12% auto;
   cursor: pointer;
-  -webkit-transition: 0.6s;
   transition: 0.6s;
 }
 .gameDetails .gameDetails__container .gameDetails__infoContainer .infoContainer__genre p:hover {
   color: #ffffff;
-  -webkit-transition: 0.6s;
   transition: 0.6s;
 }
 .gameDetails .gameDetails__container .gameDetails__buttonContainer {
   border-top: 2px solid white;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 95%;
   height: 20%;
   padding-top: 20px;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-wrap: wrap;
+  align-items: center;
 }
 .gameDetails .gameDetails__container .gameDetails__buttonContainer .buttonContainer__completed {
   outline: none;
@@ -225,13 +175,8 @@
 }
 .gameDetails .gameDetails__container .gameDetails__buttonContainer .buttonContainer__completed button {
   padding: 12px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   cursor: pointer;
@@ -240,11 +185,9 @@
   font-size: 24px;
   background: none;
   border-radius: 15px;
-  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 .gameDetails .gameDetails__container .gameDetails__buttonContainer .buttonContainer__completed button:hover {
-  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   background-color: rgba(15, 15, 15, 0.9176470588);
 }
@@ -262,13 +205,8 @@
 }
 .gameDetails .gameDetails__container .gameDetails__buttonContainer .buttonContainer__playing button {
   padding: 12px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   cursor: pointer;
@@ -277,11 +215,9 @@
   font-size: 24px;
   background: none;
   border-radius: 15px;
-  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 .gameDetails .gameDetails__container .gameDetails__buttonContainer .buttonContainer__playing button:hover {
-  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   background-color: rgba(15, 15, 15, 0.9176470588);
 }
@@ -299,13 +235,8 @@
 }
 .gameDetails .gameDetails__container .gameDetails__buttonContainer .buttonContainer__inPlans button {
   padding: 12px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   cursor: pointer;
@@ -314,11 +245,9 @@
   font-size: 24px;
   background: none;
   border-radius: 15px;
-  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 .gameDetails .gameDetails__container .gameDetails__buttonContainer .buttonContainer__inPlans button:hover {
-  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   background-color: rgba(15, 15, 15, 0.9176470588);
 }
@@ -336,13 +265,8 @@
 }
 .gameDetails .gameDetails__container .gameDetails__buttonContainer .buttonContainer__abandoned button {
   padding: 12px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   cursor: pointer;
@@ -351,40 +275,26 @@
   font-size: 24px;
   background: none;
   border-radius: 15px;
-  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 .gameDetails .gameDetails__container .gameDetails__buttonContainer .buttonContainer__abandoned button:hover {
-  -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   background-color: rgba(15, 15, 15, 0.9176470588);
 }
 .gameDetails .gameDetails__container .gameDetails__addToLibrary {
   margin: 5% auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   width: 35%;
   color: white;
   background-color: rgba(15, 15, 15, 0.7254901961);
   border-radius: 15px;
 }
 .gameDetails .gameDetails__container .gameDetails__addToLibrary button {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   cursor: pointer;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   padding: 4px;
   display: flex;
   height: 100%;
@@ -394,11 +304,9 @@
   font-size: 28px;
   background: none;
   border-radius: 15px;
-  -webkit-transition: 0.6s;
   transition: 0.6s;
 }
 .gameDetails .gameDetails__container .gameDetails__addToLibrary button:hover {
-  -webkit-transition: 0.6s;
   transition: 0.6s;
   background-color: rgba(15, 15, 15, 0.9176470588);
 }
@@ -459,4 +367,4 @@
   font-size: 24px;
   letter-spacing: 1px;
   margin-bottom: 10px;
-}
+}/*# sourceMappingURL=gameDetails.css.map */

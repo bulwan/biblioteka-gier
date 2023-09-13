@@ -15,10 +15,8 @@ function Home() {
   const [fetchValue, setFetchValue] = useState<string>("");
   const [titleValue, setTitleValue] = useState<string>("Home");
   const [orderByValue, setOrderByValue] = useState<string>("");
-  const [endMessage, setEndMessage] = useState(""); 
-  const goUp = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const [endMessage, setEndMessage] = useState("");
+
   const fetchData = useCallback(
     async (page: number) => {
       try {
@@ -28,22 +26,17 @@ function Home() {
         const excludedTagIds = [44, 50, 15919, 60452];
         const gamesWithoutTags = response.data.results.filter((game: any) => {
           if (game.tags) {
-
-            return !game.tags.some((tag: { id: number }) =>
-              excludedTagIds.includes(tag.id)
-            );
+            return !game.tags.some((tag: { id: number }) => excludedTagIds.includes(tag.id));
           } else {
             return true;
           }
         });
         if (gamesWithoutTags.length === 0) {
           setHasMore(false);
-          setEndMessage("No more data to load.")
+          setEndMessage("No more data to load.");
         } else {
           setGamecard((prevGamecard) =>
-            page === 1
-              ? [...gamesWithoutTags]
-              : [...prevGamecard, ...gamesWithoutTags]
+            page === 1 ? [...gamesWithoutTags] : [...prevGamecard, ...gamesWithoutTags]
           );
           setCurrentPage(page + 1);
         }
@@ -68,22 +61,21 @@ function Home() {
   }, [fetchValue, orderByValue]);
   return (
     <InfiniteScroll
-        dataLength={gamecard.length}
-        next={() => fetchData(currentPage+1)}
-        hasMore={hasMore}
-        loader={<Loading />}
-        endMessage={endMessage}
-        scrollableTarget="scrollableDiv"
-      >
+      dataLength={gamecard.length}
+      next={() => fetchData(currentPage + 1)}
+      hasMore={hasMore}
+      loader={<Loading />}
+      endMessage={endMessage}
+      scrollableTarget="scrollableDiv">
       <div className="home">
-      <div className="home__title">
+        <div className="home__title">
           <h1>{titleValue}</h1>
         </div>
         <div className="home__mainElements">
-        <Sidebar updateValues={updateValues} />
+          <Sidebar updateValues={updateValues} />
           <div className="home__mainContainer">
-          <OrderBy updateOrderByValue={setOrderByValue} />
-            <div className="home__gameContainer" onClick={goUp}>
+            <OrderBy updateOrderByValue={setOrderByValue} />
+            <div className="home__gameContainer">
               {gamecard.map((elements: any) => (
                 <GameCard
                   key={`gameCard-${elements.id}`}

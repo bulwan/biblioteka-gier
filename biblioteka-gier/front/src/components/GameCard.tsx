@@ -21,11 +21,12 @@ const GameCard: React.FC<gameCardProps> = ({ id, image, rating, title, platforms
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [createCollection, setCreateCollection] = useState(false);
   const [collectionName, setCollectionName] = useState("");
-	const handleClick = (id: number) => {
-		navigate(`/game/${id}`);
-	};
-	const newRating = rating || "?"; 
-const ratingColor = newRating == '?' ? '#974EC3' : newRating <= 49 ? '#f00' : newRating <= 74 ? '#fc3' : '#6c3';
+  const handleClick = (id: number) => {
+    navigate(`/game/${id}`);
+  };
+  const newRating = rating || "?";
+  const ratingColor =
+    newRating == "?" ? "#974EC3" : newRating <= 49 ? "#f00" : newRating <= 74 ? "#fc3" : "#6c3";
   const createNamedCollection = (name) => {
     const userID = JSON.parse(sessionStorage.getItem("me")).id;
     axios
@@ -56,7 +57,9 @@ const ratingColor = newRating == '?' ? '#974EC3' : newRating <= 49 ? '#f00' : ne
           <div className="gameCard__image">
             <img src={image} />
           </div>
-          <div className="gameCard__rating" style={{ backgroundColor: ratingColor }}>{rating || "?"}</div>
+          <div className="gameCard__rating" style={{ backgroundColor: ratingColor }}>
+            {rating || "?"}
+          </div>
           <div className="gameCard__title">{title}</div>
           <div className="gameCard__platforms">{developers}</div>
         </div>

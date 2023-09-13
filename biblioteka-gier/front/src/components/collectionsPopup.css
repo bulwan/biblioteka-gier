@@ -3,16 +3,9 @@
   height: 365px;
   border-radius: 15px;
   cursor: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .collectionpopup .fullWidth-top {
   width: 100%;
@@ -29,9 +22,7 @@
   margin: 8px 10px;
 }
 .collectionpopup-content {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
   width: 95%;
   margin: auto;
   overflow-y: auto;
@@ -48,15 +39,9 @@
   text-align: left;
 }
 .collectionpopup-symbols {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: end;
+  align-items: center;
+  justify-content: end;
 }
 .collectionpopup-symbol-delete {
   padding: 5px;
@@ -86,43 +71,22 @@
 }
 
 .box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 
 .newCollection {
   color: white;
-  -webkit-transition: ease 0.1s;
   transition: ease 0.1s;
   background: none;
   border: 0;
   width: 100%;
   font-size: 16px;
   border-bottom: 1px rgb(141, 141, 141) solid;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
-.newCollection::-webkit-input-placeholder {
-  font-size: 16px;
-  font-weight: 100;
-  color: rgb(141, 141, 141);
-}
 .newCollection::-moz-placeholder {
-  font-size: 16px;
-  font-weight: 100;
-  color: rgb(141, 141, 141);
-}
-.newCollection:-ms-input-placeholder {
-  font-size: 16px;
-  font-weight: 100;
-  color: rgb(141, 141, 141);
-}
-.newCollection::-ms-input-placeholder {
   font-size: 16px;
   font-weight: 100;
   color: rgb(141, 141, 141);
@@ -137,8 +101,6 @@
   margin: 8px 0;
   text-align: left;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   height: 35px;
 }
@@ -151,4 +113,4 @@
   width: 70px;
   height: 20px;
   cursor: pointer;
-}
+}/*# sourceMappingURL=collectionsPopup.css.map */

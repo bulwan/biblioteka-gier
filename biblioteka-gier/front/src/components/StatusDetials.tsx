@@ -7,78 +7,57 @@ import { API_KEY } from "../../key.tsx";
 
 function StatusDetails(props) {
   const params = useParams();
+
   const [gameList, setGameList] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Start with loading state
 
   useEffect(() => {
-    if (sessionStorage.getItem(params.name)?.length >= 1) {
-      const gameToFetch = JSON.parse(sessionStorage.getItem(params.name));
-      const fetchGames = async () => {
-        const games = [];
-        for (const game of gameToFetch) {
-          if (localStorage.getItem(game.gameID)) {
-            games.push(JSON.parse(localStorage.getItem(game.gameID)));
-          } else {
-            try {
-              const response = await axios.get(
-                `https://api.rawg.io/api/games/${game.gameID}?key=${API_KEY}`
-              );
-              games.push(response.data);
-              localStorage.setItem(game.gameID, JSON.stringify(response.data));
-            } catch (error) {
-              console.log("An error occurred:", error);
-            }
-          }
+    axios
+      .get(`http://localhost:1337/api/users/${params.userID}?populate=*`)
+      .then((response) => {
+        const gameToFetch = [];
+        for (const game of eval(`response.data.${params.name}`)) {
+          gameToFetch.push(game.gameID);
         }
-        setGameList(games);
-        setIsLoading(false); // Set loading to false after fetching
-      };
-
-      fetchGames();
-    } else {
-      axios
-        .get("http://localhost:1337/api/users/me?populate=*")
-        .then((response) => {
-          const gameToFetch = [];
-          for (const game of eval(`response.data.${params.name}`)) {
-            gameToFetch.push(game.gameID);
-          }
-          const fetchGames = async () => {
-            const games = [];
-            for (const game of gameToFetch) {
-              if (localStorage.getItem(game)) {
-                games.push(JSON.parse(localStorage.getItem(game)));
-              } else {
-                try {
-                  const response = await axios.get(
-                    `https://api.rawg.io/api/games/${game}?key=${API_KEY}`
-                  );
-                  games.push(response.data);
-                  localStorage.setItem(game, JSON.stringify(response.data));
-                } catch (error) {
-                  console.log("An error occurred:", error);
-                }
+        const fetchGames = async () => {
+          const games = [];
+          for (const game of gameToFetch) {
+            if (localStorage.getItem(game)) {
+              games.push(JSON.parse(localStorage.getItem(game)));
+            } else {
+              try {
+                const response = await axios.get(
+                  `https://api.rawg.io/api/games/${game}?key=${API_KEY}`
+                );
+                games.push(response.data);
+                localStorage.setItem(game, JSON.stringify(response.data));
+              } catch (error) {
+                console.log("An error occurred:", error);
               }
             }
-            setGameList(games);
-            setIsLoading(false);
-          };
-
-          fetchGames();
-        })
-        .catch((error) => {
-          console.log("An error occurred:", error.response);
+          }
+          setGameList(games);
           setIsLoading(false);
-        });
-    }
+        };
+
+        fetchGames();
+      })
+      .catch((error) => {
+        console.log("An error occurred:", error.response);
+        setIsLoading(false);
+      });
   }, [params.name]);
 
   return (
     <>
       <div className="home__content">
-        <div className="home__title">{params.name}</div>
+        <div className="home__title">
+          <h1>{params.name}</h1>
+        </div>
         <div className="home__subtitle">
-          Games marked as {params.name}: {gameList.length}
+          <h2>
+            {params.username}'s games marked as {params.name}: {gameList.length}
+          </h2>
         </div>
       </div>
 
@@ -96,7 +75,7 @@ function StatusDetails(props) {
         ) : isLoading ? (
           <p>Loading...</p>
         ) : (
-          <p>No game with status {params.name}</p>
+          <p>No games marked as {params.name}.</p>
         )}
       </div>
     </>

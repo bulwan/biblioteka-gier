@@ -3,7 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "./Sidebar";
 import "../pages/gameDetails/gameDetails.css";
-import { API_KEY } from "../../key.tsx"
+import { API_KEY } from "../../key.tsx";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import StatusDropdown from "./StatusDropdown.js";
@@ -22,12 +22,9 @@ const GameInformation: React.FC<gameInformationProps> = () => {
   const [gameInfo, setGameInfo] = useState<any>(null);
   const [screenshots, setScreenshots] = useState([]);
   const [collections, setCollections] = useState([]);
-  console.log(screenshots);
   const fetchGameInfo = async () => {
     try {
-      const response = await axios.get(
-        `https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`
-      );
+      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`);
       setGameInfo(response.data);
       localStorage.setItem(gameId, JSON.stringify(response.data));
     } catch (error) {
@@ -58,10 +55,8 @@ const GameInformation: React.FC<gameInformationProps> = () => {
         let newGame = localStorage.getItem(gameId);
         if (newGame) {
           setGameInfo(JSON.parse(newGame));
-          console.log("NIE MA ZAPYTANIA");
         }
       } else {
-        console.log("JEST ZAPYTANIE");
         fetchGameInfo();
       }
     }
@@ -94,17 +89,11 @@ const GameInformation: React.FC<gameInformationProps> = () => {
               <img src={gameInfo.background_image} alt={gameInfo.name} />
             </div>
             {gameInfo.metacritic !== null ? (
-              <div
-                className="gameDetails__rating"
-                style={{ backgroundColor: ratingColor }}
-              >
+              <div className="gameDetails__rating" style={{ backgroundColor: ratingColor }}>
                 {gameInfo.metacritic}
               </div>
             ) : (
-              <div
-                className="gameDetails__rating"
-                style={{ backgroundColor: "#974EC3" }}
-              >
+              <div className="gameDetails__rating" style={{ backgroundColor: "#974EC3" }}>
                 ?
               </div>
             )}
@@ -123,16 +112,14 @@ const GameInformation: React.FC<gameInformationProps> = () => {
                 </p>
               </div>
               <div className="infoContainer__platforms">
-              <h1>Platforms</h1>
-              <div className="platforms__name">
+                <h1>Platforms</h1>
+                <div className="platforms__name">
                   {gameInfo.platforms &&
                     gameInfo.platforms.length > 0 &&
                     gameInfo.platforms
                       .slice(0, 3)
                       .map((element: any) => (
-                        <p key={element.platform.name}>
-                          {element.platform.name}
-                        </p>
+                        <p key={element.platform.name}>{element.platform.name}</p>
                       ))}
                 </div>
               </div>
@@ -169,19 +156,19 @@ const GameInformation: React.FC<gameInformationProps> = () => {
               <h1>Screenshots</h1>
             </div>
             <div className="gameDetails__screenshotsContainer">
-            <Carousel showThumbs={false}>
-  {gallery.map((screenshot: any, index: number) => (
-    <div key={index}>
-      <img src={screenshot.original} alt="Screenshot" />
-    </div>
-  ))}
-</Carousel>
+              <Carousel showThumbs={false}>
+                {gallery.map((screenshot: any, index: number) => (
+                  <div key={index}>
+                    <img src={screenshot.original} alt="Screenshot" />
+                  </div>
+                ))}
+              </Carousel>
             </div>
             <div className="gameDetails_descriptionTitle">
               <h1>About</h1>
             </div>
             <div className="gameDetails_description">
-            <h1>
+              <h1>
                 {gameInfo.description
                   .replace(/<\/?[^>]+(>|$)/g, "")
                   .split(/[.!?]/)
