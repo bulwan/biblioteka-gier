@@ -63,5 +63,141 @@ const exampleObject = [
 		platforms:
 			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
 	},
+	{
+		key: 10,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 11,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 12,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 13,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 14,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 15,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 16,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 17,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 18,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 19,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 20,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 21,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 22,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 23,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+	{
+		key: 24,
+		image: "https://cdn.cloudflare.steamstatic.com/steam/apps/107310/ss_bd5be89600569ae07e78ec70b188da31bf38d1da.1920x1080.jpg?t=1685658598",
+		rating: "100",
+		title: "Cthulhu Saves the World: Super Hyper Enhanced Championship Edition Alpha Diamond DX Plus Alpha FES HD – Premium Enhanced Game of the Year Collector's Edition (without Avatars!)",
+		developers: "Zeboyd Games",
+		platforms:
+			"https://www.citypng.com/public/uploads/preview/png-windows-10-white-logo-icon-11663435580xw2dohohov.png",
+	},
+
 ];
 export default exampleObject;

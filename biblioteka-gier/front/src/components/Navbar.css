@@ -1,5 +1,5 @@
 .navbar {
-  width: 100%;
+  max-width: 1280px;
   height: 67px;
   display: flex;
   flex-direction: row;
@@ -91,6 +91,9 @@
   overflow: hidden;
   transition: 0.6s;
 }
+.navbar .navbar_results.active .results__link {
+  text-decoration: none;
+}
 .navbar .navbar_results.active .gameList__gameCard {
   display: flex;
   align-items: center;
@@ -99,24 +102,45 @@
   border-bottom: 2px solid #ccc;
 }
 .navbar .navbar_results.active .gameList__gameCard img {
-  width: 60px;
-  height: 80px;
+  width: 80px;
+  height: 90px;
   -o-object-fit: cover;
      object-fit: cover;
   margin-right: 10px;
 }
 .navbar .navbar_results.active .gameCard__title {
-  margin: 0;
+  width: 20%;
+  font-weight: 600;
+  margin: 0 auto;
   font-size: 20px;
 }
 .navbar .navbar_results.active .gameCard__platforms {
-  margin: 0 0 0 2%;
+  margin: 0 auto;
+  width: 55%;
 }
-.navbar .navbar_results.active .gameCard__platforms img {
+.navbar .navbar_results.active .gameCard__platforms p {
   width: auto;
-  height: 25px;
+  font-size: 18px;
+  text-align: center;
   -o-object-fit: contain;
      object-fit: contain;
+}
+.navbar .navbar_results.active .gameCard__rating {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #66cc33;
+  padding: 10px;
+  margin: 0 auto;
+  width: 25px;
+  height: 20px;
+}
+.navbar .navbar__loading {
+  overflow: hidden;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
 }
 .navbar .navbar_results.inactive {
   display: flex;
@@ -132,6 +156,9 @@
   overflow: hidden;
   transition: 0.4s;
 }
+.navbar .navbar_results.inactive .results__link {
+  text-decoration: none;
+}
 .navbar .navbar_results.inactive .gameList__gameCard {
   display: flex;
   align-items: center;
@@ -146,13 +173,16 @@
   -o-object-fit: cover;
      object-fit: cover;
   margin-right: 10px;
+  border-radius: 5px;
 }
 .navbar .navbar_results.inactive .gameCard__title {
   margin: 0;
+  width: auto;
   font-size: 20px;
 }
 .navbar .navbar_results.inactive .gameCard__platforms {
-  margin: 0 0 0 1.8%;
+  margin: 0 0 0 0;
+  height: 90%;
 }
 .navbar .navbar_results.inactive .gameCard__platforms img {
   width: auto;
@@ -164,28 +194,29 @@
   display: flex;
   width: 100%;
   height: 27px;
+  text-decoration: none;
   background: none;
   border: none;
-  margin: auto;
+  margin: 12% auto;
   color: white;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
 }
 .navbar .navbar__register {
   display: flex;
   width: 100%;
   height: 27px;
+  text-decoration: none;
   background: none;
   border: none;
-  margin: auto;
+  margin: 12% auto;
   color: white;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
 }
 .navbar .navbar__buttons {
   display: flex;
   width: 15%;
-  justify-content: space-around;
 }/*# sourceMappingURL=Navbar.css.map */
