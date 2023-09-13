@@ -1,130 +1,186 @@
-import "../pages/gameDetails/gameDetails.css";
+import React, { useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
+import axios from "axios";
 import Sidebar from "./Sidebar";
+import "../pages/gameDetails/gameDetails.css";
+import { API_KEY } from "../../key.tsx";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import StatusDropdown from "./StatusDropdown.js";
+import CollectionList from "./CollectionList.js";
 type gameInformationProps = {
-	id: any;
-	image: string;
-	rating: string;
-	title: string;
-	platforms: string;
+  id: any;
+  image: string;
+  rating: string;
+  title: string;
+  platforms: string;
+  description: string;
 };
-const GameInformation: React.FC<gameInformationProps> = ({
-	id,
-	image,
-	rating,
-	title,
-	platforms,
-}) => {
-	return (
-		<div className="gameDetails__fullPage">
-			<Sidebar />
-			<div className="gameDetails">
-				<div key={id} className="gameDetails__container">
-					<div className="gameDetails__image">
-						<img src={image} alt={title} />
-					</div>
-					<div className="gameDetails__rating">{rating}</div>
-					<div className="gameDetails__title">{title}</div>
-					<div className="gameDetails__infoContainer">
-						<div className="infoContainer__releaseDate">
-							<h1>Release date</h1>
-							<p>2023-10-17</p>
-						</div>
-						<div className="infoContainer__developer">
-							<h1>Developers</h1>
-							<p>Remedy</p>
-						</div>
-						<div className="infoContainer__platforms">
-							<h1>Platforms</h1>
-							<div className="platforms__images">
-								<img src={platforms} />
-								<img src={platforms} />
-								<img src={platforms} />
-							</div>
-						</div>
-						<div className="infoContainer__genre">
-							<h1>Genre</h1>
-							<div className="genre__names">
-								<p>FPS</p>
-								<p>RPG</p>
-								<p>Adenture</p>
-							</div>
-						</div>
-					</div>
-					<div className="gameDetails__buttonContainer">
-						<div className="buttonContainer__completed">
-							<button>
-								<img
-									src="src\images\completed-icon.png"
-									alt="completed-icon"
-								/>
-								Completed
-							</button>
-						</div>
-						<div className="buttonContainer__playing">
-							<button>
-								<img
-									src="src\images\playing-icon.png"
-									alt="playing-icon"
-								/>
-								Playing
-							</button>
-						</div>
-						<div className="buttonContainer__inPlans">
-							<button>
-								<img
-									src="src\images\inPlans-icon.png"
-									alt="inPlans-icon"
-								/>
-								In plans
-							</button>
-						</div>
-						<div className="buttonContainer__abandoned">
-							<button>
-								<img
-									src="src\images\abandoned-icon.png"
-									alt="abandoned-icon"
-								/>
-								Abandoned
-							</button>
-						</div>
-					</div>
-					<div className="gameDetails__addToLibrary">
-						<button>
-							Add to library
-							<img
-								src="src\images\addToLibrary-icon.png"
-								alt="abandoned-icon"
-							/>
-						</button>
-					</div>
-					<div className="gameDetails__screenshotsTitle">
-						<h1>Screenshots</h1>
-					</div>
-					<div className="gameDetails__screenshotsContainer">
-						<img
-							src="src\images\game2-screenshots1.jpg"
-							alt="game__screenshot1"
-						></img>
-						<img
-							src="src\images\game2-screenshots2.jpg"
-							alt="game__screenshot2"
-						/>
-					</div>
-					<div className="gameDetails_descriptionTitle">
-						<h1>About</h1>
-					</div>
-					<div className="gameDetails_description">
-						<h1>
-							The story follows bestselling thriller novelist Alan
-							Wake, who has been trapped in an alternate dimension
-							for 13 years, as he attempts to escape by writing a
-							horror story involving an FBI agent named Saga
-							Anderson.
-						</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+const GameInformation: React.FC<gameInformationProps> = () => {
+  const { id } = useParams();
+  const gameId: string = String(id);
+  const [gameInfo, setGameInfo] = useState<any>(null);
+  const [screenshots, setScreenshots] = useState([]);
+  const [collections, setCollections] = useState([]);
+  const fetchGameInfo = async () => {
+    try {
+      const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`);
+      setGameInfo(response.data);
+      localStorage.setItem(gameId, JSON.stringify(response.data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchScreenshots = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.rawg.io/api/games/${gameId}/screenshots?key=${API_KEY}`
+      );
+      const cacheGame = JSON.parse(localStorage.getItem(gameId) || "{}");
+      const newData = {
+        ...cacheGame,
+        screenshots: response.data.results,
+      };
+      localStorage.setItem(gameId, JSON.stringify(newData));
+      setScreenshots(response.data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (gameId) {
+      if (localStorage.getItem(gameId)) {
+        let newGame = localStorage.getItem(gameId);
+        if (newGame) {
+          setGameInfo(JSON.parse(newGame));
+        }
+      } else {
+        fetchGameInfo();
+      }
+    }
+  }, [gameId]);
+
+  useEffect(() => {
+    setCollections(JSON.parse(sessionStorage.getItem("collections")));
+    if (gameId) {
+      fetchScreenshots();
+    }
+  }, [gameId]);
+  const ratingColor =
+    gameInfo?.metacritic == "?"
+      ? "#974EC3"
+      : gameInfo?.metacritic <= 49
+      ? "#f00"
+      : gameInfo?.metacritic <= 74
+      ? "#fc3"
+      : "#6c3";
+  const gallery = screenshots.map((screenshot: any) => ({
+    original: screenshot.image,
+    thumbnail: screenshot.image,
+  }));
+  return (
+    <div className="gameDetails__fullPage">
+      <div className="gameDetails">
+        {gameInfo && (
+          <div key={gameInfo.id} className="gameDetails__container">
+            <div className="gameDetails__image">
+              <img src={gameInfo.background_image} alt={gameInfo.name} />
+            </div>
+            {gameInfo.metacritic !== null ? (
+              <div className="gameDetails__rating" style={{ backgroundColor: ratingColor }}>
+                {gameInfo.metacritic}
+              </div>
+            ) : (
+              <div className="gameDetails__rating" style={{ backgroundColor: "#974EC3" }}>
+                ?
+              </div>
+            )}
+            <div className="gameDetails__title">{gameInfo.name}</div>
+            <div className="gameDetails__infoContainer">
+              <div className="infoContainer__releaseDate">
+                <h1>Release date</h1>
+                <p>{gameInfo.released}</p>
+              </div>
+              <div className="infoContainer__developer">
+                <h1>Developers</h1>
+                <p>
+                  {gameInfo.developers &&
+                    gameInfo.developers.length > 0 &&
+                    gameInfo.developers[0].name}
+                </p>
+              </div>
+              <div className="infoContainer__platforms">
+                <h1>Platforms</h1>
+                <div className="platforms__name">
+                  {gameInfo.platforms &&
+                    gameInfo.platforms.length > 0 &&
+                    gameInfo.platforms
+                      .slice(0, 3)
+                      .map((element: any) => (
+                        <p key={element.platform.name}>{element.platform.name}</p>
+                      ))}
+                </div>
+              </div>
+              <div className="infoContainer__genre">
+                <h1>Genre</h1>
+                <div className="genre__names">
+                  {gameInfo.genres.slice(0, 3).map((genre: { name: string }) => (
+                    <p key={genre.name}>{genre.name}</p>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="gameCard__addToCollections">
+              <div className="gameCard__addToCollections-dropdown">
+                Manage <b>{gameInfo.name}'s</b> status:
+                <br />
+                <br />
+                <br />
+                <StatusDropdown id={id} />
+              </div>
+              <div className="gameCard__addToCollections-dropdown">
+                Manage <b>{gameInfo.name}</b> in your collections:
+                <br />
+                <br />
+                {collections?.map((item) => (
+                  <div key={item.id}>
+                    <CollectionList name={item.name} key={item.id} id={id} collection={item} />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="gameDetails__screenshotsTitle">
+              <h1>Screenshots</h1>
+            </div>
+            <div className="gameDetails__screenshotsContainer">
+              <Carousel showThumbs={false}>
+                {gallery.map((screenshot: any, index: number) => (
+                  <div key={index}>
+                    <img src={screenshot.original} alt="Screenshot" />
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+            <div className="gameDetails_descriptionTitle">
+              <h1>About</h1>
+            </div>
+            <div className="gameDetails_description">
+              <h1>
+                {gameInfo.description
+                  .replace(/<\/?[^>]+(>|$)/g, "")
+                  .split(/[.!?]/)
+                  .slice(0, 5)
+                  .join(".")
+                  .concat(".")}
+              </h1>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 export default GameInformation;

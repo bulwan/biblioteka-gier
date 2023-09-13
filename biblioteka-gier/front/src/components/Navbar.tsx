@@ -1,4 +1,4 @@
-import { useNavigate, NavLink, Routes, Route } from "react-router-dom";
+import { useNavigate, NavLink, Routes, Route, Link } from "react-router-dom";
 import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
@@ -8,66 +8,85 @@ import "../index.css";
 import CollectionDetail from "./CollectionsDetails";
 import GameInformation from "./GameInformation";
 import NavbarGames from "./NavbarGames";
-import { useEffect, useState,useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { API_KEY } from "../../key.tsx";
+import Loading from "../components/Loading.tsx";
 import StatusDetails from "./StatusDetials";
-
+import Ranking from "./Ranking.tsx";
 function Navbar() {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("token");
     navigate("/");
     window.location.reload();
+    sessionStorage.clear();
   };
   const [input, updateInput] = useState("");
-  const [matchGame, updateGame] = useState<any[]>([]);
   const [games, setGames] = useState<any[]>([]);
-  const [error, setError] = useState(null);
-  const [open,setOpen] = useState(false);
-  let navbarRef:any = useRef();
-  const getData = async () => {axios
-    .get("http://localhost:1337/api/games")
-    .then(({ data }) => {
-    setGames(data.data);
-    })
-    .catch((error) => {
-    console.log(error)
-    setError(error);
-    })
-  }
+  const [open, setOpen] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
+  let navbarRef: any = useRef<any>(null);
+  const fetchGames = async () => {
+    setIsFetching(true);
+    try {
+      const response = await axios.get(
+        `https://api.rawg.io/api/games?key=${API_KEY}&search=${encodeURIComponent(input)}`
+      );
+      setGames(response.data.results.slice(0, 6));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsFetching(false);
+    }
+  };
   useEffect(() => {
-    getData();
-}, [])
+    if (input.length >= 3) {
+      const timeout = setTimeout(fetchGames, 500);
+      return () => clearTimeout(timeout);
+    }
+  }, [input]);
 
   useEffect(() => {
-	const time = setTimeout(() => {
-	  const filteredGames: any = findGame();
-	  updateGame(filteredGames);
-	}, 500);
-  const handler = (e:any) => {
-    if(!navbarRef.current.contains(e.target)) {
-      setOpen(false);
-      console.log(navbarRef.current)
-    }
-  }
-  document.addEventListener("mousedown",handler)
-	return () => {
-	  clearTimeout(time);
-    document.removeEventListener("mousedown",handler)
-	};
-  }, [matchGame]);
+    const handler = (e: any) => {
+      if (!navbarRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:1337/api/users/me?populate=*").then((response) => {
+      sessionStorage.setItem("me", JSON.stringify(response.data));
+      const completedCache = [];
+      const inPlansCache = [];
+      const abandonedCache = [];
+      const playingCache = [];
+      for (const game of response.data.completed) {
+        completedCache.push({ gameID: game.gameID, id: game.id });
+      }
+      for (const game of response.data.inPlans) {
+        inPlansCache.push({ gameID: game.gameID, id: game.id });
+      }
+      for (const game of response.data.abandoned) {
+        abandonedCache.push({ gameID: game.gameID, id: game.id });
+      }
+      for (const game of response.data.playing) {
+        playingCache.push({ gameID: game.gameID, id: game.id });
+      }
+      sessionStorage.setItem("completed", JSON.stringify(completedCache));
+      sessionStorage.setItem("inPlans", JSON.stringify(inPlansCache));
+      sessionStorage.setItem("abandoned", JSON.stringify(abandonedCache));
+      sessionStorage.setItem("playing", JSON.stringify(playingCache));
+    });
+  }, []);
+
   const changeInput = (event: any) => {
     updateInput(event.target.value);
-  };
-  const findGame = () => {
-    if (input.length >= 3) {
-      let result = games.filter((game) => {
-        return game.attributes.title.toLowerCase().includes(input.toLowerCase());
-      });
-	  return result
-    } else {
-      return [];
-    }
   };
   return (
     <>
@@ -78,26 +97,38 @@ function Navbar() {
           </NavLink>
         </div>
 
-        <div className='navbar__searchBar' onClick = {() => {setOpen(!open)}}>
+        <div
+          className="navbar__searchBar"
+          onClick={() => {
+            setOpen(!open);
+          }}>
           <input
             type="search"
             placeholder="Search Your Specific Game..."
-            onChange={changeInput}
-            ref = {navbarRef}
-          ></input>
-
-
+            onChange={changeInput}></input>
         </div>
-        <div className={`navbar_results ${open? 'active' : 'inactive'}`}>
-          {matchGame.map((game) => (
-            <NavbarGames
-              id={game.id}
-              title={game.attributes.title}
-              image={game.attributes.image}
-              rating={game.attributes.rating}
-              platforms={game.attributes.platforms}
-            />
-          ))}
+        <div className={`navbar_results ${open ? "active" : "inactive"}`} ref={navbarRef}>
+          {isFetching && <p>Loading...</p>}
+          {games.length > 0 &&
+            games.map((game) => (
+              <Link
+                to={`/game/${game.id}`}
+                key={game.id}
+                state={{ game: game }}
+                className="results__link"
+                onClick={() => setOpen(false)}>
+                <NavbarGames
+                  id={game.id}
+                  title={game.name}
+                  image={game.background_image}
+                  rating={game.metacritic || "?"}
+                  platforms={
+                    game.platforms &&
+                    game.platforms.map((platform: any) => platform.platform.name).join(", ")
+                  }
+                />
+              </Link>
+            ))}
         </div>
         <div className="navbar__buttons">
           {!localStorage.getItem("token") ? (
@@ -121,26 +152,18 @@ function Navbar() {
           )}
         </div>
       </nav>
-			<Routes>
-				<Route path="login" element={<Login src={"alanwake2.jpg"} />} />
-				<Route path="/" element={<Home />} />
-				<Route
-					path="register"
-					element={<Register src={"prey.jpg"} />}
-				/>
-				<Route path="me" element={<UserProfile />} />
-				<Route
-					path="/customCollection/:id"
-					element={<CollectionDetail />}
-				/>
-				<Route path="/game/:id" element={<GameInformation />} />
-				<Route
-					path="/collection/:username/:name"
-					element={<StatusDetails />}
-				/>
-			</Routes>
+      <Routes>
+        <Route path="login" element={<Login src={"alanwake2.jpg"} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="register" element={<Register src={"prey.jpg"} />} />
+        <Route path="me" element={<UserProfile />} />
+        <Route path="/customCollection/:id" element={<CollectionDetail />} />
+        <Route path="/game/:id" element={<GameInformation />} />
+        <Route path="/collection/:username/:userID/:name" element={<StatusDetails />} />
+        <Route path="/users/:id" element={<UserProfile />} key={window.location.pathname} />
+        <Route path="/ranking" element={<Ranking />} />
+      </Routes>
     </>
   );
 }
-
 export default Navbar;
