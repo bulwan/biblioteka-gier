@@ -53,7 +53,9 @@ function RankingTable(props) {
         </tr>
         {ranking?.map((item) => (
           <tr>
-            <td className="record record-username">{item.username}</td>
+            <td className="record record-username">
+              <NavLink to={`/users/${item.id}`}>{item.username}</NavLink>
+            </td>
             <td className="record record-number">{item.completed.length}</td>
             <td className="record record-number">{item.inPlans.length}</td>
             <td className="record record-number">{item.abandoned.length}</td>
